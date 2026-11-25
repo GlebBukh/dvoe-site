@@ -1,0 +1,1968 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Сайты под ключ от 35 000 ₽ и от 10 рабочих дней. Назовите своё дело, и страница сразу нарисует набросок.">
+<meta property="og:title" content="Студия «Двое»">
+<meta property="og:description" content="Сайты под ключ от 35 000 ₽ и от 10 рабочих дней. Назовите своё дело, и страница сразу нарисует набросок.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='10' fill='%23ff94c8'/%3E%3Ccircle cx='21' cy='16' r='10' fill='%23ff8330'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Двое","description":"Сайты под ключ. Делают двое.","makesOffer":[{"@type":"Offer","name":"Проверка сайта","price":12000,"priceCurrency":"RUB","deliveryLeadTime":{"@type":"QuantitativeValue","value":3,"unitText":"рабочих дней"}},{"@type":"Offer","name":"Одна страница","price":35000,"priceCurrency":"RUB","deliveryLeadTime":{"@type":"QuantitativeValue","value":10,"unitText":"рабочих дней"}},{"@type":"Offer","name":"Сайт компании","price":80000,"priceCurrency":"RUB","deliveryLeadTime":{"@type":"QuantitativeValue","value":20,"unitText":"рабочих дней"}},{"@type":"Offer","name":"Магазин","price":120000,"priceCurrency":"RUB","deliveryLeadTime":{"@type":"QuantitativeValue","value":30,"unitText":"рабочих дней"}}]}</script>
+<style>:root{padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Студия «Двое»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght,SHRP@100..900,0..100&family=Martian+Mono:wght@400..700&family=Onest:wght@400..700&display=swap">
+<style>
+/* Замысел: две краски, розовая и рыжая. Где накладываются, выходит красная.
+   Первый экран построен как круги Эйлера: дизайн и код, сайт на пересечении. */
+:root {
+  --ground: #f8f4f6;
+  --surface: #ffffff;
+  --ink: #2b0714;
+  --muted: #74505f;
+  --line: #e6d6dd;
+  --a: #ff94c8;
+  --b: #ff8330;
+  --ab: #f03a1d;
+  --on-color: #2b0714;
+  --deep: #2b0714;
+  --on-deep: #ffeef5;
+  --deep-line: #5a2438;
+  --btn-bg: #2b0714;
+  --btn-fg: #ffeef5;
+  --ok: #17784a;
+  --warn: #a14a00;
+  --blend: multiply;
+  --font-d: "Geologica", "Arial Black", system-ui, sans-serif;
+  --font-b: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-m: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+  --h-weight: 800;
+  --h-track: -0.035em;
+  --h-case: none;
+  --h-shadow: none;
+  --h-axes: "SHRP" 100;
+  --r-btn: 999px;
+  --r-box: 18px;
+  --shadow: 0 24px 60px -24px rgb(43 7 20 / 0.35);
+  --gut: clamp(16px, 4vw, 56px);
+  --gap-y: clamp(64px, 8.4vw, 128px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #1a060f; --surface: #2a0e1a; --ink: #ffeef5; --muted: #cda3b4; --line: #4c2233;
+    --a: #ff94c8; --b: #ff8a3a; --ab: #ff6546; --on-color: #2b0714;
+    --deep: #310f1e; --on-deep: #ffeef5; --deep-line: #66304a;
+    --btn-bg: #ff94c8; --btn-fg: #2b0714; --ok: #6fdba4; --warn: #ffb070; --blend: screen;
+    --shadow: 0 24px 60px -24px rgb(0 0 0 / 0.7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #1a060f; --surface: #2a0e1a; --ink: #ffeef5; --muted: #cda3b4; --line: #4c2233;
+  --a: #ff94c8; --b: #ff8a3a; --ab: #ff6546; --on-color: #2b0714;
+  --deep: #310f1e; --on-deep: #ffeef5; --deep-line: #66304a;
+  --btn-bg: #ff94c8; --btn-fg: #2b0714; --ok: #6fdba4; --warn: #ffb070; --blend: screen;
+  --shadow: 0 24px 60px -24px rgb(0 0 0 / 0.7);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 400 1.0625rem/1.5 var(--font-b); overflow-x: clip; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--ground); }
+h1, h2, h3, p, ul, ol, dl, dd, figure, fieldset { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+fieldset { border: 0; min-width: 0; }
+h1, h2, h3 { font-family: var(--font-d); font-weight: var(--h-weight); font-variation-settings: var(--h-axes); letter-spacing: var(--h-track); text-transform: var(--h-case); text-shadow: var(--h-shadow); line-height: 1; text-wrap: balance; }
+h2 { font-size: clamp(2.1rem, 5vw, 4.25rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.1; letter-spacing: -0.02em; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ab); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1400px; margin-inline: auto; padding-left: max(var(--gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--gut), env(safe-area-inset-right, 0px)); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 16px; top: -60px; z-index: 60; background: var(--btn-bg); color: var(--btn-fg); padding: 12px 18px; }
+.skip:focus { top: 12px; }
+.lead { font-size: clamp(1.05rem, 1.4vw, 1.25rem); max-width: 34em; text-wrap: pretty; }
+.over { font-weight: 600; color: var(--muted); }
+.head { display: grid; gap: 20px 48px; margin-bottom: clamp(32px, 4vw, 56px); }
+.head p { max-width: 38em; font-size: 1.125rem; color: var(--muted); text-wrap: pretty; }
+@media (min-width: 900px) { .head { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: end; } }
+.row { display: flex; flex-wrap: wrap; gap: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { min-height: 40px; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: var(--r-btn); background: transparent; color: var(--ink); font-size: 0.9375rem; line-height: 1.25; text-align: left; transition: background 0.2s, border-color 0.2s; }
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--a); border-color: var(--a); color: var(--on-color); }
+.link { border: 0; background: none; padding: 0; text-decoration: underline; text-underline-offset: 3px; min-height: 24px; }
+
+/* Кнопка: две точки сходятся при наведении. */
+.btn { --dot: 9px; display: inline-flex; align-items: center; gap: 16px; min-height: 52px; padding: 12px 24px; border: 0; border-radius: var(--r-btn); background: var(--btn-bg); color: var(--btn-fg); font-weight: 600; line-height: 1.15; text-decoration: none; box-shadow: var(--btn-shadow, none); }
+.btn > span { display: contents; }
+.btn:not(.btn-line)::after { content: ""; flex: none; width: 26px; height: var(--dot); background: radial-gradient(circle at center, var(--a) 69%, transparent 72%) left / var(--dot) var(--dot) no-repeat, radial-gradient(circle at center, var(--b) 69%, transparent 72%) right / var(--dot) var(--dot) no-repeat; transition: background-position 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.btn:not(.btn-line):hover::after { background-position: 45% 0, 62% 0; }
+.btn-line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn-line:hover { background: var(--a); color: var(--on-color); box-shadow: inset 0 0 0 1.5px var(--a); }
+.btn-s { min-height: 44px; padding: 8px 18px; font-size: 0.9375rem; }
+:root:not([data-era]) .btn:not(.btn-line)::after { --a: #ff94c8; --b: #ff8330; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-era]) .btn:not(.btn-line)::after { --a: #f03a1d; --b: #2b0714; } }
+:root[data-theme="dark"]:not([data-era]) .btn:not(.btn-line)::after { --a: #f03a1d; --b: #2b0714; }
+
+input[type="range"] { appearance: none; -webkit-appearance: none; width: 100%; height: 32px; margin: 0; background: transparent; cursor: grab; }
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--a), var(--ab) 50%, var(--b)); }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--a), var(--ab) 50%, var(--b)); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%; background: var(--ink); border: 4px solid var(--ground); box-shadow: 0 0 0 1.5px var(--ink); }
+input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--ink); border: 4px solid var(--ground); box-shadow: 0 0 0 1.5px var(--ink); }
+
+/* Шапка */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.top-in { display: flex; align-items: center; gap: 12px 24px; min-height: 72px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; font: var(--h-weight) 1.6rem/1 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.04em; text-decoration: none; min-height: 44px; }
+.eyes { position: relative; display: block; width: 52px; height: 30px; isolation: isolate; }
+.eyes-ink::before, .eyes-ink::after { content: ""; position: absolute; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--a); transition: transform 0.16s; }
+.eyes-ink::after { right: 0; background: var(--b); mix-blend-mode: var(--blend); }
+.eyes b { position: absolute; top: 10px; left: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--on-color); transform: translate(var(--px, 0px), var(--py, 0px)); transition: transform 0.12s ease-out, height 0.2s, top 0.2s; }
+.eyes b + b { left: auto; right: 8px; }
+.eyes.blink b { transform: scaleY(0.12); transition-duration: 0.06s; }
+.eyes.sleep b { height: 2px; top: 16px; transform: none; border-radius: 1px; }
+.nav { display: none; gap: 4px; margin-left: auto; }
+.nav a { padding: 10px 14px; text-decoration: none; font-weight: 500; border-radius: var(--r-btn); }
+.nav a:hover { background: var(--a); color: var(--on-color); }
+.reader { display: inline-flex; padding: 3px; border-radius: var(--r-btn); background: var(--line); margin-left: auto; }
+.reader button { min-height: 38px; padding: 6px 13px; border: 0; border-radius: var(--r-btn); background: transparent; color: var(--ink); font-size: 0.875rem; font-weight: 500; }
+.reader button[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 3px rgb(43 7 20 / 0.18); }
+.top .btn { display: none; }
+@media (min-width: 620px) { .top .btn { display: inline-flex; } }
+@media (min-width: 1080px) { .nav { display: flex; } .reader { margin-left: 0; } }
+
+.foot { padding-block: 40px 48px; border-top: 1.5px solid var(--line); }
+.foot-in { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 40px; color: var(--muted); font-size: 0.9375rem; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 4px 20px; } .foot nav a { display: inline-flex; align-items: center; min-height: 40px; color: var(--ink); text-underline-offset: 4px; }
+.foot-b { font: var(--h-weight) 1.6rem/1 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.04em; color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+.hero { padding-block: clamp(20px, 2.6vw, 40px) clamp(40px, 5vw, 80px); overflow: clip; }
+.hero-in { display: grid; gap: 48px clamp(32px, 5vw, 88px); }
+@media (min-width: 1020px) { .hero-in { grid-template-columns: minmax(0, 0.84fr) minmax(0, 1fr); align-items: center; } }
+.hero-copy { position: relative; z-index: 2; display: grid; gap: 22px; min-width: 0; }
+h1 { font-size: clamp(2.35rem, 4.25vw, 4.2rem); line-height: 1; }
+h1 span { display: inline-block; }
+.maker { display: grid; gap: 14px; margin-top: 8px; }
+.maker > label { font-weight: 600; }
+.maker input[type="text"] { width: 100%; min-height: 64px; padding: 12px 22px; border: 2px solid var(--ink); border-radius: var(--r-box); background: var(--surface); font-size: clamp(1.1rem, 1.6vw, 1.35rem); font-weight: 500; }
+.maker input[type="text"]:focus { outline: none; border-color: var(--ab); box-shadow: 0 0 0 4px color-mix(in srgb, var(--a) 55%, transparent); }
+.mood { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; font-weight: 500; margin-block: 4px 8px; }
+
+.stage { position: relative; min-width: 0; padding: clamp(28px, 4.6vw, 72px) 0 clamp(20px, 2.4vw, 36px); }
+.venn { position: absolute; inset: 0; isolation: isolate; pointer-events: none; }
+.venn::before, .venn::after { content: ""; position: absolute; top: 50%; width: 88%; aspect-ratio: 1; border-radius: 50%; background: var(--a); translate: 0 -50%; left: -1%; animation: meet-a 1.1s cubic-bezier(0.2, 0.9, 0.25, 1) both; }
+.venn::after { left: auto; right: -15%; background: var(--b); mix-blend-mode: var(--blend); animation-name: meet-b; }
+@keyframes meet-a { from { transform: translateX(-14%); } }
+@keyframes meet-b { from { transform: translateX(14%); } }
+
+.frame { position: relative; z-index: 1; width: var(--fw, 100%); max-width: 100%; min-width: min(290px, 100%); margin-inline: auto; background: var(--surface); border-radius: 16px; box-shadow: var(--shadow); transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.frame.drag { transition: none; user-select: none; }
+.frame-bar { display: flex; align-items: center; gap: 14px; height: 40px; padding-inline: 16px; border-bottom: 1px solid var(--line); }
+.frame-dots { width: 38px; height: 10px; background: radial-gradient(circle, var(--a) 4.4px, transparent 5px) left / 14px 10px no-repeat, radial-gradient(circle, var(--b) 4.4px, transparent 5px) 12px 0 / 14px 10px no-repeat, radial-gradient(circle, var(--ab) 4.4px, transparent 5px) right / 14px 10px no-repeat; }
+.frame-url { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8125rem; color: var(--muted); }
+.frame-view { height: clamp(420px, 32vw, 480px); overflow: hidden; border-radius: 0 0 16px 16px; container: mk / inline-size; }
+.grip { position: absolute; top: 50%; right: -22px; width: 44px; height: 84px; margin-top: -42px; cursor: ew-resize; touch-action: none; }
+.grip::before { content: ""; position: absolute; inset: 0 14px; border-radius: 8px; background: var(--ink); }
+.grip::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 24px; translate: -50% -50%; background: radial-gradient(circle, var(--a) 2px, transparent 2.4px) 0 0 / 4px 8px; }
+.grip-note { position: relative; z-index: 1; width: fit-content; max-width: 100%; margin: 14px auto 0; padding: 5px 14px; border-radius: var(--r-btn); background: var(--ground); color: var(--ink); font-size: 0.875rem; }
+@media (max-width: 640px) {
+  .grip, .grip-note { display: none; }
+  .stage { padding-block: 40px; }
+  .frame-view { height: 520px; }
+  .venn::before { top: 30%; left: -20%; } .venn::after { top: 70%; right: -20%; }
+  .maker .chips { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding-inline: 16px; scrollbar-width: none; }
+  .maker .chip { flex: none; }
+  .maker .row .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* Набросок: раскладку меняет ширина рамки, а не ширина экрана. */
+.mk { --k: calc(0.86 + var(--bold) * 0.62); display: flex; flex-direction: column; height: 100%; background: var(--bg); color: var(--fg); font-family: var(--font-b); transition: background 0.4s, color 0.4s; }
+.mk-nav { display: flex; align-items: center; gap: 20px; padding: 16px 24px; font-size: 0.8125rem; }
+.mk-nav b { margin-right: auto; font: 800 1.125rem/1 "Geologica", var(--font-b); font-variation-settings: "SHRP" calc(var(--bold) * 100); letter-spacing: -0.02em; white-space: nowrap; }
+.mk-btn { display: inline-flex; align-items: center; align-self: start; padding: 0.8em 1.35em; border-radius: calc(26px - var(--bold) * 26px); background: var(--ac); color: var(--ac-fg); font-size: 0.9375rem; font-weight: 600; white-space: nowrap; }
+.mk-hero { flex: 1; overflow: hidden; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 20px; padding: 8px 24px 20px; min-height: 0; align-items: center; }
+.mk-copy { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.mk-k { font-size: 0.8125rem; font-weight: 500; opacity: 0.8; }
+.mk-h { font-family: "Geologica", var(--font-b); font-weight: calc(480 + var(--bold) * 420); font-variation-settings: "SHRP" calc(var(--bold) * 100); font-size: clamp(1.6rem, calc(4.9cqi * var(--k)), 4.2rem); line-height: calc(1.12 - var(--bold) * 0.16); letter-spacing: calc(-0.01em - var(--bold) * 0.03em); text-wrap: balance; overflow-wrap: break-word; }
+.mk-s { font-size: 0.9375rem; line-height: 1.45; max-width: 30em; opacity: 0.86; }
+.mk-art { height: 100%; min-height: 120px; display: grid; place-items: center; border-radius: calc(28px - var(--bold) * 28px); background: var(--soft); overflow: hidden; }
+.mk-art svg { width: 78%; max-height: 88%; display: block; }
+.mk-items { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); }
+.mk-items li { display: grid; gap: 2px; padding: 14px 24px; font-size: 0.8125rem; }
+.mk-items li + li { border-left: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); }
+.mk-items b { font-size: 0.9375rem; }
+.mk[data-layout="quiet"] .mk-hero { grid-template-columns: 0.8fr 1.2fr; }
+.mk[data-layout="quiet"] .mk-art { order: -1; }
+.mk[data-layout="poster"] { background: var(--ac); color: var(--ac-fg); }
+.mk[data-layout="poster"] .mk-btn { background: var(--ac-fg); color: var(--ac); }
+.mk[data-layout="poster"] .mk-hero { grid-template-columns: 1fr; align-content: space-between; position: relative; }
+.mk[data-layout="poster"] .mk-copy { position: relative; z-index: 1; height: 100%; }
+.mk[data-layout="poster"] .mk-s { max-width: 22em; opacity: 1; }
+.mk[data-layout="poster"] .mk-btn:not(.mk-nav .mk-btn) { margin-top: auto; }
+.mk[data-layout="poster"] .mk-art { --bg: color-mix(in srgb, var(--ac) 78%, var(--ac-fg)); position: absolute; right: -5%; bottom: -34%; width: 46%; height: auto; aspect-ratio: 1; background: none; overflow: visible; }
+.mk[data-layout="poster"] .mk-art svg { width: 100%; max-height: none; }
+.mk[data-layout="poster"] .mk-items { background: var(--bg); color: var(--fg); position: relative; z-index: 1; border: 0; }
+@container mk (max-width: 520px) {
+  .mk-nav { padding: 14px 18px; } .mk-nav span, .mk-nav .mk-btn { display: none; }
+  .mk-nav::after { content: ""; width: 22px; height: 12px; border-block: 2px solid currentColor; }
+  .mk-hero, .mk[data-layout="quiet"] .mk-hero { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); padding: 6px 18px 16px; gap: 16px; align-items: stretch; }
+  .mk[data-layout="quiet"] .mk-hero { grid-template-rows: minmax(0, 1fr) auto; }
+  .mk-h { font-size: clamp(1.4rem, calc(7.2cqi * var(--k)), 2.6rem); }
+  .mk-s { font-size: 0.875rem; } .mk-art { min-height: 60px; }
+  .mk-items li { padding: 10px 12px; font-size: 0.75rem; align-content: space-between; } .mk-items b { font-size: 0.8125rem; }
+  .mk[data-layout="poster"] .mk-art { width: 66%; right: -18%; bottom: -10%; }
+}
+.mk-in > * { animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.mk-in > *:nth-child(2) { animation-delay: 0.05s; } .mk-in > *:nth-child(3) { animation-delay: 0.1s; }
+@keyframes rise { from { transform: translateY(14px); } }
+
+.facts { border-block: 1.5px solid var(--line); }
+.facts-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.facts-in > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 8px; padding: 26px 20px 28px 0; }
+.facts dd { font: var(--h-weight) clamp(2.4rem, 4.4vw, 4rem)/1 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.04em; }
+.facts dt { max-width: 17em; color: var(--muted); font-size: 0.9375rem; line-height: 1.35; }
+@media (min-width: 860px) { .facts-in { grid-template-columns: repeat(4, minmax(0, 1fr)); } .facts-in > div + div { padding-left: 24px; border-left: 1.5px solid var(--line); } }
+
+.works { padding-block: var(--gap-y) 0; }
+.works-in { display: grid; }
+@media (min-width: 900px) { .works-in { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.work { display: flex; flex-direction: column; gap: 32px; padding: 40px var(--gut) 0; color: var(--on-color); overflow: hidden; min-width: 0; }
+.work-a { background: var(--a); } .work-b { background: var(--ab); } .work-c { background: var(--b); }
+.work-t { display: grid; gap: 10px; max-width: 22em; min-height: 8.2em; align-content: start; }
+.work-t p { text-wrap: pretty; }
+.phone { --p-bg: #fff; --p-fg: #14181d; --p-ac: #2c62d6; --p-soft: #eef2f7; width: min(100%, 340px); height: 600px; margin: 0 auto -24px; padding: 12px; border-radius: 46px; background: #17070e; box-shadow: 0 30px 50px -28px rgb(43 7 20 / 0.7); transition: translate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.work:hover .phone { translate: 0 -10px; }
+.app { display: flex; flex-direction: column; gap: 14px; height: 100%; padding: 20px 18px 18px; border-radius: 35px; overflow: hidden; background: var(--p-bg); color: var(--p-fg); font-size: 0.9375rem; line-height: 1.35; }
+.app-h { font: 700 1.5rem/1.08 "Geologica", var(--font-b); letter-spacing: -0.02em; }
+.app-b { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+.app-b small { font-weight: 500; opacity: 0.7; font-size: 0.8125rem; }
+.app-l { display: flex; justify-content: space-between; gap: 12px; font-weight: 500; }
+.app input[type="range"]::-webkit-slider-runnable-track { background: var(--p-soft); } .app input[type="range"]::-moz-range-track { background: var(--p-soft); }
+.app input[type="range"]::-webkit-slider-thumb { background: var(--p-ac); border-color: var(--p-bg); box-shadow: 0 0 0 1.5px var(--p-ac); }
+.app input[type="range"]::-moz-range-thumb { background: var(--p-ac); border-color: var(--p-bg); box-shadow: 0 0 0 1.5px var(--p-ac); }
+.app-seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; }
+.app-seg button, .app-slots button { min-height: 44px; padding: 6px; border: 0; border-radius: 12px; background: var(--p-soft); color: var(--p-fg); font-size: 0.875rem; font-weight: 500; line-height: 1.15; }
+.app-seg button[aria-pressed="true"], .app-slots button[aria-pressed="true"] { background: var(--p-ac); color: var(--p-acfg, #fff); }
+.app-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.app-slots button:disabled { opacity: 0.35; text-decoration: line-through; cursor: not-allowed; }
+.app-sum { margin-top: auto; padding: 16px; border-radius: 18px; background: var(--p-soft); display: grid; gap: 4px; }
+.app-sum b { font: 800 1.7rem/1 "Geologica", var(--font-b); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.app-go { min-height: 50px; border: 0; border-radius: 14px; background: var(--p-ac); color: var(--p-acfg, #fff); font-weight: 600; }
+.app-go:disabled { opacity: 0.4; cursor: not-allowed; }
+.app-doc { display: grid; gap: 6px; }
+.app-doc button { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px 10px; border: 2px solid transparent; border-radius: 16px; background: var(--p-soft); color: inherit; text-align: left; line-height: 1.2; }
+.app-doc button[aria-pressed="true"] { border-color: var(--p-ac); }
+.app-doc i { flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--p-ac); }
+.app-doc small { display: block; opacity: 0.7; font-size: 0.8125rem; }
+.app-okay { margin: auto; display: grid; gap: 12px; justify-items: center; text-align: center; }
+.app-okay i { width: 88px; height: 88px; border-radius: 50%; background: var(--p-ac); display: grid; place-items: center; }
+.app-okay i::after { content: ""; width: 34px; height: 16px; border: solid var(--p-acfg, #fff); border-width: 0 0 6px 6px; rotate: -45deg; translate: 0 -4px; }
+.app-goods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.app-goods li { display: grid; gap: 6px; padding: 10px; border-radius: 18px; background: var(--p-soft); font-size: 0.875rem; }
+.app-goods i { height: 78px; border-radius: 12px; background: radial-gradient(circle at 50% 24%, #fff6c9 0 7px, transparent 8px), linear-gradient(var(--c) 0 0) 50% 100% / 46% 62% no-repeat, color-mix(in srgb, var(--c) 30%, #fff); }
+.app-cnt { display: flex; align-items: center; justify-content: space-between; }
+.app-cnt button { width: 40px; height: 40px; border: 0; border-radius: 12px; background: var(--p-bg); color: inherit; font-size: 1.25rem; line-height: 1; }
+.app-cnt button:disabled { opacity: 0.35; }
+@media (max-width: 899px) { .work-t { min-height: 0; } }
+
+.price { padding-block: var(--gap-y); }
+.price-in { display: grid; gap: 48px clamp(32px, 6vw, 104px); }
+@media (min-width: 980px) { .price-in { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); align-items: start; } }
+.picker { display: grid; gap: 32px; min-width: 0; }
+.picker legend { margin-bottom: 12px; font-weight: 600; }
+.picks { display: grid; gap: 10px; }
+@media (min-width: 560px) { .picks { grid-template-columns: 1fr 1fr; } }
+.pick { position: relative; display: grid; gap: 4px; padding: 20px; border: 2px solid var(--line); border-radius: var(--r-box); background: var(--surface); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.pick:hover { border-color: var(--ink); }
+.pick input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.pick:has(:checked) { border-color: var(--a); background: var(--a); color: var(--on-color); }
+.pick:has(:focus-visible) { outline: 3px solid var(--ab); outline-offset: 3px; }
+.pick b { font: var(--h-weight) 1.25rem/1.1 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.02em; }
+.pick span { font-size: 0.9375rem; opacity: 0.82; }
+.pick em { margin-top: 10px; font-style: normal; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ticks { display: grid; }
+.tick { display: flex; align-items: center; gap: 14px; min-height: 48px; padding-block: 6px; cursor: pointer; border-bottom: 1.5px solid var(--line); }
+.tick input { appearance: none; -webkit-appearance: none; flex: none; width: 26px; height: 26px; margin: 0; border: 2px solid var(--ink); border-radius: 50%; background: var(--surface); cursor: pointer; transition: box-shadow 0.25s; }
+.tick input:checked { box-shadow: inset 0 0 0 4px var(--surface), inset 0 0 0 20px var(--ab); }
+.tick span { flex: 1; }
+.tick em { font-style: normal; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.late { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 22px; border-radius: var(--r-box); background: var(--surface); border: 2px dashed var(--line); }
+.late label { font-weight: 600; } .late input { grid-column: 1 / -1; }
+fieldset:disabled { opacity: 0.4; }
+
+.receipt-box { display: grid; gap: 28px; }
+@media (min-width: 980px) { .receipt-box { position: sticky; top: 100px; } }
+/* Чек остаётся бумажным в любой теме. */
+.receipt { --paper: #fffdfb; --pen: #2b0714; padding: 34px clamp(20px, 3vw, 34px) 46px; background: var(--paper); color: var(--pen); font: 400 0.8125rem/1.6 var(--font-m); font-variant-numeric: tabular-nums; -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% 100% / 18px 100%; mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% 100% / 18px 100%; }
+.receipt-shadow { filter: drop-shadow(0 18px 26px rgb(43 7 20 / 0.2)); }
+.rc-t { font: 800 1.9rem/1 "Geologica", var(--font-d); font-variation-settings: "SHRP" 100; letter-spacing: -0.04em; }
+.rc-d { opacity: 0.7; margin-bottom: 18px; }
+.rc-l { display: flex; align-items: baseline; gap: 10px; }
+.rc-l::before { content: ""; order: 1; flex: 1; border-bottom: 2px dotted currentColor; opacity: 0.35; }
+.rc-l > :last-child { order: 2; white-space: nowrap; }
+.rc-l small { opacity: 0.7; }
+.rc-hr { margin-block: 14px; border: 0; border-top: 2px dashed currentColor; opacity: 0.35; }
+.rc-minus { color: #b3260e; }
+.rc-sum { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 600; }
+.rc-sum b { font: 800 clamp(1.9rem, 4vw, 2.6rem)/1 "Geologica", var(--font-d); letter-spacing: -0.04em; white-space: nowrap; }
+.rc-in > * { animation: print 0.4s steps(6) both; }
+@keyframes print { from { transform: translateY(-6px); } }
+
+/* Два читателя */
+.readers { padding-block: var(--gap-y); background: var(--deep); color: var(--on-deep); }
+.readers .head p { color: var(--on-deep); opacity: 0.86; }
+.readers-in { display: grid; gap: 40px 24px; }
+@media (min-width: 980px) { .readers-in { grid-template-columns: 0.85fr 1fr 1.25fr; align-items: stretch; } }
+.rd { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding-top: 18px; border-top: 1.5px solid var(--deep-line); }
+.rd-k { font-weight: 600; opacity: 0.75; }
+.drum { width: 168px; aspect-ratio: 1; border-radius: 26px; background: #fff; display: grid; place-items: center; }
+.drum i { width: 108px; aspect-ratio: 1; border-radius: 50%; border: 12px solid #cfd8df; background: conic-gradient(var(--a) 0 33%, var(--b) 0 66%, #9fd8e8 0); animation: spin 5s linear infinite; }
+@keyframes spin { to { rotate: 1turn; } }
+.drum-t { font: 800 1.9rem/1 "Geologica", var(--font-d); letter-spacing: -0.03em; }
+.switches { display: grid; }
+.sw { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding-block: 14px; border-bottom: 1.5px solid var(--deep-line); cursor: pointer; }
+.sw input { appearance: none; -webkit-appearance: none; grid-row: span 2; grid-column: 2; width: 58px; height: 32px; margin: 0; border-radius: 16px; background: var(--deep-line); position: relative; cursor: pointer; transition: background 0.25s; }
+.sw input::before { content: ""; position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--on-deep); transition: translate 0.3s cubic-bezier(0.3, 1.5, 0.5, 1), background 0.25s; }
+.sw input:checked { background: var(--a); } .sw input:checked::before { translate: 26px 0; background: var(--ab); }
+.sw span { font-weight: 600; grid-column: 1; grid-row: 1; }
+.sw code { grid-column: 1; grid-row: 2; font: 400 0.75rem/1.5 var(--font-m); opacity: 0.4; transition: opacity 0.25s; overflow-wrap: anywhere; }
+.sw:has(:checked) code { opacity: 1; color: var(--a); }
+.say { max-width: 30em; padding: 14px 18px; border-radius: 20px; text-wrap: pretty; }
+.say-q { align-self: end; background: var(--deep-line); border-bottom-right-radius: 4px; }
+.say-a { align-self: start; background: var(--on-deep); color: #2b0714; border-bottom-left-radius: 4px; min-height: 6.5em; }
+.verdict { margin-top: auto; font: var(--h-weight) clamp(1.5rem, 2.6vw, 2.3rem)/1.05 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.03em; color: var(--a); }
+.verdict[data-n="4"] { color: var(--b); }
+.rd-note { grid-column: 1 / -1; max-width: 62em; font-size: 0.9375rem; opacity: 0.75; text-wrap: pretty; }
+
+/* Машина времени */
+.time { padding-block: var(--gap-y); background: var(--a); color: var(--on-color); }
+.time-in { display: grid; gap: 40px clamp(32px, 6vw, 104px); }
+@media (min-width: 980px) { .time-in { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); align-items: end; } }
+.time-t { display: grid; gap: 22px; } .time-t p { max-width: 34em; font-size: 1.125rem; text-wrap: pretty; }
+.dial { display: grid; gap: 14px; min-width: 0; }
+.dial-y { font: var(--h-weight) clamp(5.4rem, 17vw, 14.5rem)/0.82 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+.dial-n { min-height: 3em; max-width: 32em; font-weight: 500; }
+.dial input[type="range"]::-webkit-slider-runnable-track { background: var(--on-color); } .dial input[type="range"]::-moz-range-track { background: var(--on-color); }
+.dial input[type="range"]::-webkit-slider-thumb { width: 40px; height: 40px; margin-top: -17px; background: var(--b); border-color: var(--on-color); box-shadow: none; }
+.dial input[type="range"]::-moz-range-thumb { width: 32px; height: 32px; background: var(--b); border-color: var(--on-color); box-shadow: none; }
+.dial input { height: 44px; }
+.dial-s { display: flex; justify-content: space-between; font-weight: 600; font-variant-numeric: tabular-nums; }
+.era-bar { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 40; display: flex; align-items: center; gap: 16px; max-width: calc(100vw - 32px); padding: 8px 8px 8px 22px; border-radius: var(--r-btn); background: var(--surface); color: var(--ink); box-shadow: var(--shadow), 0 0 0 1.5px var(--ink); font-weight: 600; white-space: nowrap; }
+
+/* План работ */
+.process { padding-block: var(--gap-y); }
+.gantt-x { overflow-x: auto; padding-bottom: 12px; }
+.gantt { min-width: 860px; display: grid; grid-template-columns: 112px repeat(10, minmax(0, 1fr)); gap: 8px 0; align-items: stretch; }
+.g-day { padding-block: 6px; text-align: center; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.g-who { align-self: center; font: var(--h-weight) 1.15rem/1.1 var(--font-d); font-variation-settings: var(--h-axes); letter-spacing: -0.02em; }
+.g-bar { margin: 3px; padding: 14px; border-radius: 14px; min-height: 84px; color: var(--on-color); font-size: 0.9375rem; font-weight: 500; line-height: 1.2; background: var(--a); }
+.g-bar[data-who="b"] { background: var(--b); }
+.g-bar[data-who="ab"] { background: var(--ab); }
+.g-bar[data-who="you"] { min-height: 0; background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); padding: 10px 12px; font-size: 0.875rem; }
+.g-pay { grid-column: 1 / -1; display: flex; justify-content: space-between; padding: 14px 4px 0 112px; color: var(--muted); font-weight: 500; }
+.gantt > li { min-width: 0; }
+
+/* Проверка */
+.audit { padding-block: var(--gap-y); background: var(--surface); }
+.audit-in { display: grid; gap: 40px clamp(32px, 6vw, 104px); }
+@media (min-width: 980px) { .audit-in { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); } .audit-t { position: sticky; top: 110px; align-self: start; } }
+.audit-t { display: grid; gap: 22px; justify-items: start; } .audit-t > p { max-width: 32em; font-size: 1.125rem; color: var(--muted); }
+.audit-t .audit-score { color: var(--ink); font-weight: 600; }
+.audit-l li { display: grid; grid-template-columns: 34px 1fr; gap: 2px 14px; padding-block: 18px; border-bottom: 1.5px solid var(--line); }
+.audit-l li:first-child { border-top: 1.5px solid var(--line); }
+.audit-l i { grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 700; color: var(--surface); background: var(--ok); }
+.audit-l li[data-s="warn"] i { background: var(--warn); }
+.audit-l b { font-weight: 600; } .audit-l span { color: var(--muted); font-size: 0.9375rem; overflow-wrap: anywhere; }
+.audit-l.run li { animation: rise 0.4s both; animation-delay: calc(var(--n) * 60ms); }
+
+/* Условия */
+.terms { padding-block: var(--gap-y); background: var(--b); color: var(--on-color); }
+.terms .head p { color: inherit; }
+.terms-in { display: grid; gap: 32px 40px; }
+@media (min-width: 700px) { .terms-in { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .terms-in { grid-template-columns: repeat(4, 1fr); } }
+.terms li { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 3px solid currentColor; }
+.terms h3 { min-height: 2.2em; }
+
+/* Вопросы */
+.faq { padding-block: var(--gap-y); }
+.faq-in { display: grid; gap: 40px clamp(32px, 6vw, 104px); }
+@media (min-width: 980px) { .faq-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.faq-t { display: grid; gap: 26px; align-content: start; min-width: 0; }
+.ask { display: grid; gap: 10px; } .ask label { font-weight: 600; }
+.ask-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.ask input { flex: 1 1 240px; min-width: 0; min-height: 52px; padding: 10px 20px; border: 2px solid var(--ink); border-radius: var(--r-box); background: var(--surface); }
+.ask .btn { min-height: 52px; }
+.talk { display: flex; flex-direction: column; gap: 10px; min-height: 420px; padding: 24px; border-radius: 28px; background: var(--surface); }
+.talk p { max-width: 88%; padding: 14px 18px; border-radius: 20px; text-wrap: pretty; animation: rise 0.35s both; }
+.talk .tq { align-self: end; background: var(--a); color: var(--on-color); border-bottom-right-radius: 4px; }
+.talk .ta { align-self: start; background: var(--ground); border-bottom-left-radius: 4px; }
+
+/* Заявка */
+.contact { padding-block: var(--gap-y); border-top: 1.5px solid var(--line); overflow: clip; }
+.contact-in { display: grid; gap: 40px clamp(32px, 6vw, 104px); }
+@media (min-width: 980px) { .contact-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.contact-t { position: relative; display: grid; gap: 22px; align-content: start; min-height: 300px; }
+.contact-t > :not(.venn) { position: relative; z-index: 1; }
+.status { display: flex; align-items: center; gap: 12px; font-weight: 600; } .status i { width: 12px; height: 12px; border-radius: 50%; background: var(--ab); }
+.venn-c { position: relative; inset: auto; height: clamp(180px, 22vw, 320px); margin-top: 12px; }
+.venn-c::before, .venn-c::after { height: 100%; width: auto; left: 0; animation: none; }
+.venn-c::after { left: calc(clamp(180px, 22vw, 320px) * 0.62); right: auto; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .venn-c::after { animation: join linear both; animation-timeline: view(); animation-range: entry 0% cover 45%; }
+    @keyframes join { from { transform: translateX(46%); } }
+  }
+}
+.order { display: grid; gap: 20px; align-content: start; min-width: 0; }
+.field { display: grid; gap: 8px; } .field label { font-weight: 600; }
+.field input, .field textarea { width: 100%; min-height: 56px; padding: 14px 20px; border: 2px solid var(--line); border-radius: var(--r-box); background: var(--surface); resize: vertical; }
+.field input:focus, .field textarea:focus, .ask input:focus { outline: none; border-color: var(--ab); box-shadow: 0 0 0 4px color-mix(in srgb, var(--a) 55%, transparent); }
+.field [aria-invalid="true"] { border-color: var(--ab); }
+.err { color: var(--warn); font-weight: 500; font-size: 0.9375rem; }
+.attach { display: grid; gap: 8px; }
+.attach p { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 18px; border-radius: var(--r-box); background: var(--a); color: var(--on-color); font-weight: 500; }
+.attach button { flex: none; min-width: 44px; min-height: 36px; border: 0; border-radius: 10px; background: rgb(255 255 255 / 0.5); color: inherit; padding-inline: 12px; font-size: 0.875rem; }
+.consent { border: 0; align-items: flex-start; } .consent span { padding-top: 1px; }
+.order .btn { justify-self: start; }
+.done { display: grid; gap: 14px; padding: 22px; border-radius: var(--r-box); background: var(--surface); border: 2px solid var(--line); }
+.done pre { margin: 0; padding: 14px; border-radius: 12px; background: var(--ground); font: 400 0.8125rem/1.6 var(--font-m); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.policy { width: min(560px, calc(100vw - 32px)); padding: 32px; border: 0; border-radius: 28px; background: var(--surface); color: var(--ink); }
+.policy[open] { display: grid; gap: 16px; } .policy h2 { font-size: 1.7rem; }
+.policy::backdrop { background: rgb(43 7 20 / 0.6); }
+
+/* Глазами машины */
+.machine { padding-block: 32px 80px; }
+.machine-n { max-width: 44em; margin-bottom: 24px; color: var(--muted); }
+.machine pre { margin: 0; padding: clamp(18px, 3vw, 36px); background: var(--deep); color: var(--on-deep); font: 400 0.8125rem/1.75 var(--font-m); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Машина времени: переодевание через токены плюс пара примет каждого года. */
+:root[data-era] .dial-y { font-size: clamp(4.6rem, 14vw, 11rem); }
+
+:root[data-era="1999"] {
+  --ground: #000066; --surface: #000033; --ink: #ffff66; --muted: #66ffff; --line: #ff00ff;
+  --a: #ff66ff; --b: #00ff66; --ab: #ffff00; --on-color: #000000; --deep: #000000; --on-deep: #00ff00; --deep-line: #006600;
+  --btn-bg: #c0c0c0; --btn-fg: #000000; --ok: #00ff00; --warn: #ffff00; --blend: normal; --shadow: none;
+  --font-d: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive; --font-b: "Times New Roman", Times, serif; --font-m: "Courier New", Courier, monospace;
+  --h-weight: 700; --h-track: 0; --h-axes: normal; --r-btn: 0; --r-box: 0; --h-shadow: 2px 2px 0 rgb(255 0 255 / 0.55);
+  color-scheme: dark;
+}
+:root[data-era="1999"] body { background: repeating-conic-gradient(#00005a 0 25%, #000073 0 50%) 0 0 / 28px 28px; font-size: 1.15rem; }
+:root[data-era="1999"] :is(.btn, .chip, .reader button) { background: #c0c0c0; color: #000; border: 3px outset #f2f2f2; box-shadow: none; }
+:root[data-era="1999"] :is(.btn:active, .chip[aria-pressed="true"], .reader button[aria-pressed="true"]) { border-style: inset; }
+:root[data-era="1999"] a:not(.btn, .logo) { color: #00ffff; text-decoration: underline; }
+:root[data-era="1999"] :is(.works h3, .terms h2, .terms h3, .time h2, .dial-y) { text-shadow: none; }
+:root[data-era="1999"] :is(input[type="text"], textarea, .pick, .talk, .late, .frame, .receipt) { border: 3px ridge #ff66ff; }
+:root[data-era="1999"] .frame { border-radius: 0; } :root[data-era="1999"] .facts { border-style: double; border-width: 6px; }
+:root[data-era="1999"] .foot-b::after { content: " · вы посетитель № 000027 · страница строится"; font: 400 1rem var(--font-m); color: #00ff00; }
+:root[data-era="1999"] .over { display: inline-block; animation: blink99 1.1s steps(2) infinite; } @keyframes blink99 { 50% { opacity: 0.35; } }
+
+:root[data-era="2007"] {
+  --ground: #eaf4fd; --surface: #ffffff; --ink: #24323f; --muted: #51697d; --line: #bcd6ec;
+  --a: #a9d7ff; --b: #bfe67a; --ab: #ffb13d; --on-color: #1d2c3a; --deep: #1f4e7c; --on-deep: #ffffff; --deep-line: #3f74a8;
+  --btn-bg: linear-gradient(#ffcf6b, #ff9a1f 50%, #f58300 51%, #ffb13d); --btn-fg: #4a2500; --ok: #2f7d1e; --warn: #a85400; --blend: multiply; --shadow: 0 6px 18px rgb(31 78 124 / 0.35);
+  --font-d: "Trebuchet MS", "Lucida Grande", Verdana, sans-serif; --font-b: Verdana, "Lucida Grande", Tahoma, sans-serif; --font-m: "Courier New", monospace;
+  --h-weight: 700; --h-track: -0.02em; --h-axes: normal; --r-btn: 9px; --r-box: 10px; --h-shadow: 0 1px 0 #fff;
+  color-scheme: light;
+}
+:root[data-era="2007"] body { background: linear-gradient(#b9dcfb, #eaf4fd 620px) no-repeat, #eaf4fd; font-size: 0.9375rem; }
+:root[data-era="2007"] h1, :root[data-era="2007"] .dial-y { -webkit-box-reflect: below -0.12em linear-gradient(transparent 55%, rgb(0 0 0 / 0.22)); }
+:root[data-era="2007"] .btn { border: 1px solid #d97800; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8), 0 2px 4px rgb(0 0 0 / 0.25); text-shadow: 0 1px 0 rgb(255 255 255 / 0.5); }
+:root[data-era="2007"] .btn-line { background: linear-gradient(#fff, #dfeefb 50%, #cbe2f7 51%, #eaf4fd); border-color: #8fb8dc; }
+:root[data-era="2007"] .logo > span:last-child::after { content: "бета"; margin-left: 6px; padding: 3px 7px; border-radius: 5px; background: linear-gradient(#ff7b7b, #d81f1f); color: #fff; font: 700 0.6875rem/1 var(--font-b); letter-spacing: 0; vertical-align: super; }
+:root[data-era="2007"] :is(.work, .time, .terms, .readers) { background-image: linear-gradient(rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 45%, rgb(0 0 0 / 0.06)); }
+:root[data-era="2007"] .readers { background-image: linear-gradient(rgb(255 255 255 / 0.2), rgb(255 255 255 / 0) 45%); }
+:root[data-era="2007"] :is(.readers h2, .works h3, .terms h2, .terms h3) { text-shadow: none; }
+
+:root[data-era="2014"] {
+  --ground: #ecf0f1; --surface: #ffffff; --ink: #2c3e50; --muted: #566573; --line: #cfd6da;
+  --a: #1abc9c; --b: #f1c40f; --ab: #e67e22; --on-color: #14232f; --deep: #2c3e50; --on-deep: #ecf0f1; --deep-line: #4a627a;
+  --btn-bg: #c0392b; --btn-fg: #ffffff; --ok: #1a7a45; --warn: #a04000; --blend: normal; --shadow: none;
+  --font-d: "Helvetica Neue", Helvetica, Arial, sans-serif; --font-b: "Helvetica Neue", Helvetica, Arial, sans-serif; --font-m: Menlo, Consolas, monospace;
+  --h-weight: 300; --h-track: 0.02em; --h-case: uppercase; --h-axes: normal; --r-btn: 3px; --r-box: 3px;
+  color-scheme: light;
+}
+:root[data-era="2014"] :is(h1, h2) { font-size: clamp(1.9rem, 4vw, 3.4rem); line-height: 1.12; }
+:root[data-era="2014"] .btn { text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.875rem; border-bottom: 4px solid rgb(0 0 0 / 0.22); }
+:root[data-era="2014"] .btn::after { display: none; }
+:root[data-era="2014"] .dial-y { font-weight: 700; color: #fff; text-shadow: 1px 1px #17a689, 2px 2px #17a689, 3px 3px #17a689, 4px 4px #17a689, 5px 5px #17a689, 6px 6px #17a689, 7px 7px #17a689, 8px 8px #17a689, 9px 9px #17a689, 10px 10px #17a689, 11px 11px #17a689, 12px 12px #17a689; }
+:root[data-era="2014"] .frame { border-radius: 3px; border: 1px solid var(--line); } :root[data-era="2014"] .phone { box-shadow: none; }
+
+:root[data-era="2021"] {
+  --ground: #0c0a1d; --surface: #1b1738; --ink: #f5f3ff; --muted: #b9b2e0; --line: #3a3366;
+  --a: #a78bfa; --b: #67b7ff; --ab: #f19cff; --on-color: #120c2b; --deep: #150f33; --on-deep: #f5f3ff; --deep-line: #40377a;
+  --btn-bg: linear-gradient(100deg, #7c3aed, #2563eb); --btn-fg: #ffffff; --ok: #5eead4; --warn: #fcd34d; --blend: screen; --shadow: 0 30px 90px -20px rgb(124 58 237 / 0.65);
+  --font-d: "Inter", "SF Pro Display", system-ui, sans-serif; --font-b: "Inter", "SF Pro Text", system-ui, sans-serif;
+  --h-weight: 700; --h-track: -0.04em; --h-axes: normal; --r-btn: 14px; --r-box: 22px;
+  color-scheme: dark;
+}
+:root[data-era="2021"] body { background: radial-gradient(900px 600px at 85% 8%, rgb(124 58 237 / 0.5), transparent 70%) no-repeat, radial-gradient(700px 560px at 5% 620px, rgb(37 99 235 / 0.4), transparent 70%) no-repeat, #0c0a1d; }
+:root[data-era="2021"] h1 { background: linear-gradient(95deg, #fff, #c4b5fd 50%, #7dd3fc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+:root[data-era="2021"] :is(.pick, .late, .talk, .field input, .field textarea, .maker input[type="text"]) { background: rgb(255 255 255 / 0.07); border: 1px solid rgb(255 255 255 / 0.2); backdrop-filter: blur(16px); color: var(--ink); }
+:root[data-era="2021"] .pick:has(:checked) { background: var(--a); color: var(--on-color); }
+:root[data-era="2021"] .venn { filter: blur(48px); opacity: 0.8; } :root[data-era="2021"] .venn-c { filter: blur(22px); }
+:root[data-era="2021"] .btn:not(.btn-line) { box-shadow: 0 12px 40px -8px rgb(124 58 237 / 0.9); }
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#top" aria-label="Двое, в начало страницы">
+      <span class="eyes" aria-hidden="true"><span class="eyes-ink"></span><b></b><b></b></span>
+      <span>двое</span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#works">Работы</a>
+      <a href="#price">Цена</a>
+      <a href="#process">Срок</a>
+      <a href="#audit">Проверка</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="reader" role="group" aria-label="Кто читает страницу">
+      <button type="button" id="read-human" aria-pressed="true">Человек</button>
+      <button type="button" id="read-machine" aria-pressed="false">Машина</button>
+    </div>
+    <a class="btn btn-s" href="#contact"><span>Обсудить сайт</span></a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" id="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="over">Сайты под ключ. Делают двое</p>
+      <h1 id="hero-h"><span>Назовите дело.</span> <span>Набросок готов.</span></h1>
+      <p class="lead">Страница рисуется, пока вы печатаете. Если направление нравится, доводим до настоящего сайта: ваши тексты, фото и заявки. От 35&nbsp;000&nbsp;₽, от 10&nbsp;рабочих дней.</p>
+
+      <form class="maker" id="maker" autocomplete="off">
+        <label for="maker-text">Чем вы заняты?</label>
+        <input id="maker-text" type="text" maxlength="60" value="кофейня «Пар» у парка" spellcheck="false">
+        <div class="chips" id="maker-chips" role="group" aria-label="Примеры"></div>
+        <div class="mood">
+          <label for="maker-mood">Спокойно</label>
+          <input id="maker-mood" type="range" min="0" max="100" value="46" aria-label="Характер: от спокойного к дерзкому">
+          <span aria-hidden="true">Дерзко</span>
+        </div>
+        <div class="row">
+          <button class="btn" type="button" id="maker-take"><span>Взять этот набросок</span></button>
+          <button class="btn btn-line" type="button" id="maker-next">Другой вариант</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="venn" aria-hidden="true"></div>
+      <div class="frame" id="frame">
+        <div class="frame-bar" aria-hidden="true"><span class="frame-dots"></span><span class="frame-url" id="frame-url">пар.рф</span></div>
+        <div class="frame-view" id="frame-view" aria-hidden="true"></div>
+        <div class="grip" id="grip" role="slider" tabindex="0" aria-label="Ширина экрана наброска" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-orientation="horizontal"></div>
+      </div>
+      <p class="grip-note" aria-hidden="true">потяните край: сайт перестроится под телефон</p>
+      <p class="sr" id="stage-say" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="facts" aria-label="Коротко о нас">
+  <dl class="wrap facts-in">
+    <div><dt>человека делают ваш сайт, от разговора до запуска</dt><dd>2</dd></div>
+    <div><dt>рабочих дней на одну страницу</dt><dd>10</dd></div>
+    <div><dt>за каждый день, если опоздаем</dt><dd>−5%</dd></div>
+    <div><dt id="fact-cookies-t">кук на этой странице, поэтому нет и баннера о них</dt><dd id="fact-cookies">0</dd></div>
+  </dl>
+</section>
+
+<section class="works" id="works" aria-labelledby="works-h">
+  <div class="wrap head">
+    <h2 id="works-h">Портфолио, в&nbsp;которое можно нажимать</h2>
+    <p>Картинку сайта нарисует кто угодно. Мы показываем, как он работает. Это учебные проекты, заказчиков у них нет, цены внутри для примера.</p>
+  </div>
+  <div class="works-in">
+    <article class="work work-a">
+      <div class="work-t">
+        <h3>Ремонт квартир</h3>
+        <p>Клиент боится, что смета вырастет. Поэтому первый экран сразу считает деньги и срок.</p>
+      </div>
+      <div class="phone" id="app-repair"></div>
+    </article>
+    <article class="work work-b">
+      <div class="work-t">
+        <h3>Клиника</h3>
+        <p>Звонить неловко и некогда. Врач, день и время выбираются без звонка.</p>
+      </div>
+      <div class="phone" id="app-clinic"></div>
+    </article>
+    <article class="work work-c">
+      <div class="work-t">
+        <h3>Продавец с площадки</h3>
+        <p>Покупатель пришёл по вкладышу из посылки. Второй заказ идёт мимо комиссии.</p>
+      </div>
+      <div class="phone" id="app-shop"></div>
+    </article>
+  </div>
+</section>
+
+<section class="price" id="price" aria-labelledby="price-h">
+  <div class="wrap head">
+    <h2 id="price-h">Чек до созвона</h2>
+    <p>Соберите заказ и посмотрите сумму, дату сдачи и платежи. Дополнения считаем по часам, часы видно в чеке.</p>
+  </div>
+  <div class="wrap price-in">
+    <form class="picker" id="picker">
+      <fieldset>
+        <legend>С чем вы пришли</legend>
+        <div class="chips" id="price-presets"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Что делаем</legend>
+        <div class="picks" id="price-products"></div>
+      </fieldset>
+      <fieldset id="price-extras-box">
+        <legend>Что добавить</legend>
+        <div class="ticks" id="price-extras"></div>
+        <label class="tick"><input type="checkbox" id="price-audit"><span>Проверку уже купил</span><em>−12 000 ₽</em></label>
+      </fieldset>
+      <div class="late">
+        <label for="price-late">А если мы опоздаем?</label>
+        <output id="price-late-out" for="price-late">Сдали вовремя</output>
+        <input id="price-late" type="range" min="0" max="7" value="0">
+      </div>
+    </form>
+    <div class="receipt-box">
+      <div class="receipt-shadow"><div class="receipt" id="receipt" aria-live="polite"></div></div>
+      <div class="row">
+        <button class="btn" type="button" id="receipt-take"><span>Приложить к заявке</span></button>
+        <button class="btn btn-line" type="button" id="receipt-copy">Скопировать чек</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="readers" id="readers" aria-labelledby="readers-h">
+  <div class="wrap head">
+    <h2 id="readers-h">У&nbsp;сайта два читателя</h2>
+    <p>Клиент спрашивает помощника, помощник читает сайт за него. Если там картинка вместо цены, он посоветует соседа. Попробуйте сами: сайт слева не меняется, меняется то, что видит машина.</p>
+  </div>
+  <div class="wrap readers-in">
+    <div class="rd rd-human">
+      <p class="rd-k">Видит человек</p>
+      <div class="drum" aria-hidden="true"><i></i></div>
+      <p class="drum-t">Барабан</p>
+      <p>Чиним стиральные машины. Сегодня до 21:00, выезд 900 ₽.</p>
+    </div>
+    <div class="rd rd-switch">
+      <p class="rd-k">Включаем по одному</p>
+      <div id="rd-signals" class="switches"></div>
+    </div>
+    <div class="rd rd-machine">
+      <p class="rd-k">Отвечает помощник</p>
+      <p class="say say-q">Кто сегодня до восьми починит стиральную машину на Лесной?</p>
+      <p class="say say-a" id="rd-answer" aria-live="polite"></p>
+      <p class="verdict" id="rd-verdict"></p>
+    </div>
+    <p class="rd-note">Сценка разыграна скриптом, мастерская придумана. Настоящие помощники отвечают по-своему, и место в их ответе никто не гарантирует. Кнопка «Машина» в шапке показывает нашу страницу так, как её читает робот.</p>
+  </div>
+</section>
+
+<section class="time" id="time" aria-labelledby="time-h">
+  <div class="wrap time-in">
+    <div class="time-t">
+      <h2 id="time-h">Машина времени</h2>
+      <p>Оформление стареет быстрее бизнеса. Потяните ручку, и вся страница уедет в прошлое. Тексты и цены останутся на месте: если сайт собран правильно, его переодевают, а не переделывают.</p>
+    </div>
+    <div class="dial">
+      <output class="dial-y" id="time-year" for="time-range">2027</output>
+      <p class="dial-n" id="time-note"></p>
+      <input id="time-range" type="range" min="0" max="4" step="1" value="4" aria-label="Год оформления">
+      <div class="dial-s" id="time-scale" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process" aria-labelledby="process-h">
+  <div class="wrap head">
+    <h2 id="process-h">Десять дней, две пары рук</h2>
+    <p>Так идёт одна страница. Там, где дорожки сходятся, работаем вместе. От вас нужно пять коротких ответов.</p>
+  </div>
+  <div class="wrap">
+    <div class="gantt-x" tabindex="0" role="region" aria-label="План работ по дням">
+      <ol class="gantt" id="gantt"></ol>
+    </div>
+  </div>
+</section>
+
+<section class="audit" id="audit" aria-labelledby="audit-h">
+  <div class="wrap audit-in">
+    <div class="audit-t">
+      <h2 id="audit-h">Проверьте нас нашей же проверкой</h2>
+      <p>Мы продаём проверку сайтов за 12&nbsp;000&nbsp;₽. Вот её короткая версия, запущенная на этой странице прямо у вас в браузере. Замечания не прячем.</p>
+      <p class="audit-score" id="audit-score"></p>
+      <button class="btn btn-line" type="button" id="audit-run">Проверить ещё раз</button>
+    </div>
+    <ul class="audit-l" id="audit-list"></ul>
+  </div>
+</section>
+
+<section class="terms" id="terms" aria-labelledby="terms-h">
+  <div class="wrap head">
+    <h2 id="terms-h">Отзывов пока нет. Придумывать не стали</h2>
+    <p>Вместо них четыре условия, которые пишем в договор.</p>
+  </div>
+  <ul class="wrap terms-in">
+    <li><h3>Опоздали, значит дешевле</h3><p>Минус 5% за каждый рабочий день по нашей вине, до 25%.</p></li>
+    <li><h3>Домен и доступы ваши</h3><p>С первого дня и на ваше имя. Уйти от нас можно за вечер.</p></li>
+    <li><h3>Два круга правок в цене</h3><p>Третий считаем по часам и называем сумму заранее.</p></li>
+    <li><h3>Платите частями</h3><p>70 и 30 за страницу. 50, 40 и 10 за сайт или магазин.</p></li>
+  </ul>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="faq-h">
+  <div class="wrap faq-in">
+    <div class="faq-t">
+      <h2 id="faq-h">Спросите страницу</h2>
+      <form class="ask" id="ask" autocomplete="off">
+        <label for="ask-text">Ваш вопрос своими словами</label>
+        <div class="ask-row">
+          <input id="ask-text" type="text" maxlength="120" placeholder="а если вы пропадёте?">
+          <button class="btn btn-s" type="submit"><span>Спросить</span></button>
+        </div>
+      </form>
+      <div class="chips" id="ask-chips" role="group" aria-label="Частые вопросы"></div>
+    </div>
+    <div class="talk" id="talk" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap contact-in">
+    <div class="contact-t">
+      <h2 id="contact-h">Нас двое. С&nbsp;вами будет трое</h2>
+      <p class="lead">Первый рисует и пишет тексты. Второй собирает и запускает. Посредников между вами и нами нет.</p>
+      <p class="status"><i aria-hidden="true"></i><span id="reply-now"></span></p>
+      <div class="venn venn-c" aria-hidden="true"></div>
+    </div>
+    <form class="order" id="order" novalidate>
+      <div class="field">
+        <label for="order-name">Как к вам обращаться</label>
+        <input id="order-name" name="name" type="text" maxlength="60" autocomplete="name" required>
+        <p class="err" id="order-name-err" hidden></p>
+      </div>
+      <div class="field">
+        <label for="order-way">Телефон или имя в мессенджере</label>
+        <input id="order-way" name="way" type="text" maxlength="80" autocomplete="tel" required>
+        <p class="err" id="order-way-err" hidden></p>
+      </div>
+      <div class="field">
+        <label for="order-task">Задача в двух словах</label>
+        <textarea id="order-task" name="task" rows="3" maxlength="800"></textarea>
+      </div>
+      <div class="attach" id="order-attach" hidden></div>
+      <label class="tick consent"><input type="checkbox" id="order-ok" required><span>Даю согласие на обработку данных из этой формы. <button type="button" class="link" id="policy-open">Политика</button></span></label>
+      <p class="err" id="order-ok-err" hidden></p>
+      <button class="btn" type="submit"><span>Отправить заявку</span></button>
+      <div class="done" id="order-done" role="status" hidden></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<section class="machine" id="machine" aria-label="Страница глазами машины" hidden>
+  <div class="wrap">
+    <p class="machine-n">Примерно так страницу читает поисковый робот или голосовой помощник. Собрано из тех же данных, что и сама страница.</p>
+    <pre id="machine-out" tabindex="0"></pre>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p class="foot-b">двое</p>
+    <nav aria-label="Разделы, внизу"><a href="#works">Работы</a><a href="#price">Цена</a><a href="#time">Машина времени</a><a href="#audit">Проверка</a><a href="#faq">Вопросы</a><a href="#contact">Заявка</a></nav>
+    <p id="foot-speed"></p>
+    <p>Без кук, счётчиков и всплывающих окон</p>
+  </div>
+</footer>
+
+<div class="era-bar" id="era-bar" hidden>
+  <span id="era-bar-t"></span>
+  <button class="btn btn-s" type="button" id="era-back"><span>Вернуться в 2027</span></button>
+</div>
+
+<dialog class="policy" id="policy" aria-labelledby="policy-h">
+  <h2 id="policy-h">Политика обработки данных</h2>
+  <p><b>Черновик.</b> Перед запуском сюда впишем имя и ИНН того, кто обрабатывает данные.</p>
+  <p>Собираем имя, способ связи и описание задачи из формы. Нужны, чтобы ответить на заявку. Храним до ответа и ещё год, если вы стали клиентом. Никому не передаём. Попросите удалить, и удалим в течение десяти рабочих дней.</p>
+  <form method="dialog"><button class="btn btn-s"><span>Понятно</span></button></form>
+</dialog>
+
+<script>
+(() => {
+'use strict';
+// Всё, что меняется под студию, лежит здесь и в prices.js.
+const STUDIO = {
+  name: 'Двое',
+  replyFromHour: 10,
+  replyUntilHour: 20,
+  // Адрес, куда форма отправит заявку. Пока пусто, форма только собирает текст.
+  formEndpoint: '',
+  // Пример: [{ title: 'Телеграм', value: '@имя', href: 'https://t.me/имя' }]
+  contacts: [],
+};
+
+// Цены из бизнес-плана: колонка «первые 5 клиентов».
+const HOUR_RATE = 1200;
+const EDIT_BUFFER = 1.2;
+const PRICE_STEP = 500;
+const HOURS_PER_DAY = 6;
+const LATE_PERCENT_PER_DAY = 5;
+const LATE_PERCENT_MAX = 25;
+const AUDIT_CREDIT = 12000;
+
+const PRODUCTS = [
+  { id: 'audit', title: 'Проверка сайта', note: 'Отчёт на 5–7 страниц и созвон', price: 12000, days: 3, split: [100] },
+  { id: 'page', title: 'Одна страница', note: 'Одна услуга, одна заявка', price: 35000, days: 10, split: [70, 30] },
+  { id: 'company', title: 'Сайт компании', note: 'От 5 до 10 страниц', price: 80000, days: 20, split: [50, 40, 10] },
+  { id: 'shop', title: 'Магазин', note: 'До 100 товаров, оплата и доставка', price: 120000, days: 30, split: [50, 40, 10] },
+];
+
+// Дополнения считаются по часам: часы × ставка + запас на правки.
+const EXTRAS = [
+  { id: 'texts', title: 'Тексты пишем мы', hours: 10 },
+  { id: 'booking', title: 'Запись по времени', hours: 12 },
+  { id: 'calc', title: 'Калькулятор цены', hours: 10 },
+  { id: 'crm', title: 'Связь с учётом клиентов', hours: 8 },
+  { id: 'lang', title: 'Второй язык', hours: 8 },
+];
+
+const CARE = { title: 'Поддержка', price: 6000, minMonths: 3 };
+
+// Нерабочие дни в формате месяц-день. Переносы выходных сюда не входят.
+const HOLIDAYS = ['01-01', '01-02', '01-03', '01-04', '01-05', '01-06', '01-07', '01-08', '02-23', '03-08', '05-01', '05-09', '06-12', '11-04'];
+
+
+function extraPrice(hours) {
+  return Math.round((hours * HOUR_RATE * EDIT_BUFFER) / PRICE_STEP) * PRICE_STEP;
+}
+
+function latePercent(lateDays) {
+  return Math.min(Math.max(0, lateDays) * LATE_PERCENT_PER_DAY, LATE_PERCENT_MAX);
+}
+
+function isWorkday(date) {
+  const day = date.getDay();
+  if (day === 0 || day === 6) return false;
+  const key = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  return !HOLIDAYS.includes(key);
+}
+
+function addWorkdays(start, count) {
+  let date = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+  let left = count;
+  while (left > 0) {
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    if (isWorkday(date)) left -= 1;
+  }
+  return date;
+}
+
+function splitPayments(total, split) {
+  const heads = split.slice(0, -1).map((percent) => Math.round((total * percent) / 100));
+  const paid = heads.reduce((sum, value) => sum + value, 0);
+  return [...heads, total - paid];
+}
+
+function estimate({ productId, extraIds = [], auditDone = false, lateDays = 0, start = new Date() }) {
+  const product = PRODUCTS.find((item) => item.id === productId);
+  if (!product) throw new Error(`Неизвестная услуга: ${productId}`);
+  const isAudit = product.id === 'audit';
+  const extras = isAudit ? [] : EXTRAS.filter((item) => extraIds.includes(item.id));
+  const lines = [
+    { title: product.title, price: product.price },
+    ...extras.map((item) => ({ title: item.title, price: extraPrice(item.hours), hours: item.hours })),
+  ];
+  const subtotal = lines.reduce((sum, line) => sum + line.price, 0);
+  const percent = latePercent(lateDays);
+  const penalty = Math.round((subtotal * percent) / 100);
+  const credit = auditDone && !isAudit ? AUDIT_CREDIT : 0;
+  const total = Math.max(0, subtotal - penalty - credit);
+  const extraDays = Math.ceil(extras.reduce((sum, item) => sum + item.hours, 0) / HOURS_PER_DAY);
+  const days = product.days + extraDays;
+  return { product, lines, subtotal, percent, penalty, credit, total, days, payments: splitPayments(total, product.split), finish: addWorkdays(start, days) };
+}
+
+// Палитра: [фон, текст, акцент, мягкий].
+const NICHES = [
+  { id: 'coffee', emblem: 'cup', name: 'Пар', stems: ['кофе', 'пекар', 'кафе', 'ресторан', 'пицц', 'суши', 'кондитер', 'торт', 'чайн', 'столов', 'выпеч', 'бургер', 'еда'],
+    heads: ['Кофе, за которым сворачивают с дороги', 'Открыто с первым трамваем', 'Зерно обжарили во вторник'],
+    sub: 'Фильтр, выпечка и место у окна. Закажите заранее и заберите без очереди.', cta: 'Заказать к девяти', nav: ['Меню', 'Где мы', 'Зерно'],
+    items: [['Фильтр', '190 ₽'], ['Капучино', '240 ₽'], ['Булочка с кардамоном', '170 ₽']],
+    pals: [['#f3efe6', '#1d2b22', '#2f7d5b', '#cfe3d2'], ['#17324d', '#f4f7fb', '#ffc857', '#24486b'], ['#f7d9c4', '#3a1520', '#c8323b', '#f2b99b']] },
+  { id: 'repair', emblem: 'plan', name: 'Прямой угол', stems: ['ремонт кварт', 'отделк', 'строит', 'сантех', 'электрик', 'окна', 'окон', 'двер', 'мебел', 'кухн', 'потол', 'ремонт', 'дизайн интер', 'плитк'],
+    heads: ['Ремонт, где смета не растёт', 'Стены ровные. Сроки тоже', 'Сдаём квартиру в тапочках'],
+    sub: 'Замер бесплатно, смета за день, фотоотчёт каждую пятницу.', cta: 'Посчитать ремонт', nav: ['Объекты', 'Смета', 'Бригада'],
+    items: [['Косметический', 'от 9 000 ₽/м²'], ['Под ключ', 'от 18 000 ₽/м²'], ['Санузел', 'от 240 000 ₽']],
+    pals: [['#eef0f2', '#1c232b', '#f2a20c', '#d4dae0'], ['#20302c', '#eef6f1', '#f06a3c', '#30473f'], ['#fff', '#12263f', '#2c62d6', '#dbe6fb']] },
+  { id: 'clinic', emblem: 'plus', name: 'Белый день', stems: ['стомат', 'клиник', 'врач', 'космет', 'массаж', 'зуб', 'медиц', 'психолог', 'остеопат', 'ветерин'],
+    heads: ['Лечим так, что хочется вернуться', 'Запись за сорок секунд', 'Сначала план, потом лечение'],
+    sub: 'Выберите врача и время. Цена приёма известна до визита.', cta: 'Выбрать время', nav: ['Врачи', 'Цены', 'Запись'],
+    items: [['Осмотр и план', '1 500 ₽'], ['Чистка', '5 900 ₽'], ['Пломба', 'от 4 800 ₽']],
+    pals: [['#eef7f7', '#0f3038', '#12908a', '#c9e8e6'], ['#f6f2fb', '#2a1c47', '#7a52cc', '#ded0f5'], ['#0f2f4f', '#f1f7ff', '#8fd8ff', '#1b4770']] },
+  { id: 'law', emblem: 'columns', name: 'Довод', stems: ['юрист', 'адвокат', 'бухгалт', 'налог', 'нотариус', 'наслед', 'банкрот', 'консульт', 'страхов', 'оценщик'],
+    heads: ['Скажем честно, есть ли шанс', 'Спор по наследству без крика', 'Сначала ответ, потом договор'],
+    sub: 'Разбор ситуации за тридцать минут. Шансы и цена письменно.', cta: 'Описать ситуацию', nav: ['Дела', 'Ответы', 'Цены'],
+    items: [['Разбор ситуации', '3 000 ₽'], ['Претензия', '9 000 ₽'], ['Ведение дела', 'от 60 000 ₽']],
+    pals: [['#f4f3ee', '#1a1d29', '#8a1f2d', '#dcd8cc'], ['#152238', '#f2efe6', '#d8b25a', '#223553'], ['#fff', '#0e1b16', '#1f6b4a', '#dbe9e1']] },
+  { id: 'beauty', emblem: 'waves', name: 'Чёлка', stems: ['барбер', 'салон', 'маникюр', 'парикмах', 'бров', 'ногт', 'тату', 'стриж', 'визаж', 'ресниц'],
+    heads: ['Стрижка, которая лежит сама', 'Мастер помнит ваш пробор', 'Сорок минут и новая голова'],
+    sub: 'Выберите мастера, посмотрите работы, запишитесь на свободное окно.', cta: 'Найти окно', nav: ['Мастера', 'Работы', 'Запись'],
+    items: [['Стрижка', '2 200 ₽'], ['Окрашивание', 'от 6 500 ₽'], ['Борода', '1 400 ₽']],
+    pals: [['#ffe9f0', '#3b0d22', '#e0457b', '#ffc9da'], ['#1d1b22', '#f7f2ff', '#c7f07a', '#33303c'], ['#eaf1e4', '#22331c', '#d9622b', '#cfdfc2']] },
+  { id: 'shop', emblem: 'shelf', name: 'Своя полка', stems: ['магазин', 'одежд', 'украш', 'свеч', 'вайлдберриз', 'озон', 'бренд', 'товар', 'сумк', 'игруш', 'керамик', 'посуд', 'мыло', 'wildberries', 'ozon'],
+    heads: ['Купить у тех, кто это сделал', 'Партия на двести штук. Осталось сорок', 'Без площадок и их наценки'],
+    sub: 'Каталог, оплата и доставка на одном экране. Покупатель остаётся вашим.', cta: 'Открыть каталог', nav: ['Каталог', 'Доставка', 'О нас'],
+    items: [['Свеча «Дождь»', '890 ₽'], ['Набор из трёх', '2 400 ₽'], ['Подарочная карта', 'от 1 000 ₽']],
+    pals: [['#fbf3dc', '#33240a', '#e0592a', '#f3dfa6'], ['#e9ecff', '#151a44', '#4453e0', '#c9d0ff'], ['#23281f', '#f5f3e6', '#e5c94b', '#383f31']] },
+  { id: 'auto', emblem: 'wheel', name: 'Третий бокс', stems: ['авто', 'шиномонт', 'детейл', 'мойк', 'запчаст', 'кузов', 'такси', 'грузопер'],
+    heads: ['Переобуем, пока пьёте чай', 'Покажем, что меняли', 'Свободный бокс через двадцать минут'],
+    sub: 'Живая очередь на экране. Приезжайте, когда подойдёт ваша.', cta: 'Занять бокс', nav: ['Очередь', 'Цены', 'Адрес'],
+    items: [['Комплект до 17 дюймов', '3 200 ₽'], ['Развал-схождение', '2 600 ₽'], ['Хранение шин', '4 000 ₽/сезон']],
+    pals: [['#f0f1ef', '#17191a', '#e23d28', '#d5d8d3'], ['#14181d', '#eef3f7', '#ffd02b', '#252c34'], ['#dfeaf5', '#10243a', '#0c6cc4', '#b8d1ea']] },
+  { id: 'school', emblem: 'steps', name: 'Пятый урок', stems: ['репетит', 'школ', 'курс', 'англ', 'детск', 'танц', 'круж', 'музык', 'математ', 'обуч', 'егэ'],
+    heads: ['Понятно с первого урока', 'От тройки до сотни баллов', 'Объясняем, пока не щёлкнет'],
+    sub: 'Пробный урок бесплатно. После него расскажем, за сколько дойдём до цели.', cta: 'Взять пробный', nav: ['Программа', 'Учителя', 'Цена'],
+    items: [['Пробный урок', '0 ₽'], ['Занятие', '1 800 ₽'], ['Месяц, восемь уроков', '12 800 ₽']],
+    pals: [['#fff6d6', '#2a2140', '#6a3df0', '#ffe38a'], ['#e6f4ff', '#0f2a44', '#ff6b3d', '#bfe1ff'], ['#24382d', '#f3f7ee', '#9be08a', '#355142']] },
+  { id: 'sport', emblem: 'rings', name: 'Вдох', stems: ['фитнес', 'йог', 'зал', 'трен', 'бокс', 'спорт', 'бассейн', 'пилатес', 'бег'],
+    heads: ['Первая тренировка без зеркал', 'Сил больше, чем утром', 'Приходите после работы'],
+    sub: 'Расписание на неделю, честная заполненность и запись в один тап.', cta: 'Выбрать занятие', nav: ['Расписание', 'Тренеры', 'Карта'],
+    items: [['Разовое', '900 ₽'], ['Восемь занятий', '5 600 ₽'], ['Безлимит', '7 900 ₽/мес']],
+    pals: [['#eaf6ee', '#10301f', '#1fa65a', '#c3e8d1'], ['#2a1436', '#fbeeff', '#ff7ad1', '#432356'], ['#f6f6f2', '#1b1b18', '#ff5a1f', '#e2e2d8']] },
+  { id: 'flowers', emblem: 'petals', name: 'Стебель', stems: ['цвет', 'флор', 'букет', 'свадьб', 'праздник', 'ландшафт', 'растен', 'сад'],
+    heads: ['Букет доедет свежим', 'Срезали утром', 'Цветы без повода и без очереди'],
+    sub: 'Фото вашего букета пришлём до отправки. Не понравится, соберём заново.', cta: 'Собрать букет', nav: ['Сегодня', 'Доставка', 'Уход'],
+    items: [['Букет дня', '2 900 ₽'], ['Сезонный', 'от 4 200 ₽'], ['Подписка', '9 600 ₽/мес']],
+    pals: [['#f7f0f6', '#2c1230', '#c23a9a', '#ecd1e6'], ['#16372c', '#f1f8ee', '#ffb3c8', '#245041'], ['#fff3e2', '#3c1d0c', '#ef6a2e', '#ffd8ac']] },
+  { id: 'other', emblem: 'pair', name: 'Ваше дело', stems: [],
+    heads: ['Делаем одно дело, зато хорошо', 'Объясним за минуту', 'Сначала покажем, потом продадим'],
+    sub: 'Одна мысль на экран, одна понятная кнопка и цена до звонка.', cta: 'Оставить заявку', nav: ['Что делаем', 'Цены', 'Связь'],
+    items: [['Начать', 'бесплатно'], ['Главная услуга', 'ваша цена'], ['Под ключ', 'ваша цена']],
+    pals: [['#eef0f7', '#171b33', '#4a4fd9', '#d3d7f2'], ['#1e1a17', '#fbf3ea', '#ff8a4c', '#35302b'], ['#e8f5f0', '#0f2d26', '#0e8f6d', '#bfe4d7']] },
+];
+
+const MAX_WORDS_LENGTH = 42;
+
+function normalize(text) {
+  return String(text).toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
+}
+
+// Побеждает самая длинная подходящая основа: «ремонт кварт» важнее, чем «ремонт».
+function detectNiche(text) {
+  const clean = normalize(text);
+  const hits = NICHES.flatMap((niche) =>
+    niche.stems.filter((stem) => clean.includes(normalize(stem))).map((stem) => ({ niche, length: stem.length })));
+  if (hits.length === 0) return null;
+  return hits.reduce((best, hit) => (hit.length > best.length ? hit : best)).niche;
+}
+
+function extractName(text) {
+  const quoted = String(text).match(/[«"“„]([^»"”“]{1,22})[»"”“]/);
+  if (quoted) return quoted[1].trim();
+  const words = String(text).trim().split(/\s+/).slice(1);
+  return words.find((word) => /^[А-ЯЁ][а-яё-]{1,20}$/u.test(word)) || '';
+}
+
+function kickerFrom(text, fallback) {
+  const clean = String(text).replace(/[«"“„][^»"”“]*[»"”“]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_WORDS_LENGTH);
+  if (!clean) return fallback;
+  return clean[0].toUpperCase() + clean.slice(1);
+}
+
+function domainFrom(name) {
+  const slug = normalize(name).replace(/[^а-я0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return `${slug || 'ваш-сайт'}.рф`;
+}
+
+function layoutFor(boldness) {
+  if (boldness < 0.34) return 'quiet';
+  return boldness < 0.67 ? 'split' : 'poster';
+}
+
+function buildMock({ text, niche, variant = 0, boldness = 0.5 }) {
+  const name = extractName(text) || niche.name;
+  return {
+    nicheId: niche.id,
+    emblem: niche.emblem,
+    name,
+    domain: domainFrom(name),
+    kicker: kickerFrom(text, niche.name),
+    head: niche.heads[variant % niche.heads.length],
+    sub: niche.sub,
+    cta: niche.cta,
+    nav: niche.nav,
+    items: niche.items,
+    palette: niche.pals[variant % niche.pals.length],
+    layout: layoutFor(boldness),
+    boldness,
+  };
+}
+
+const FAQ = [
+  { q: 'Сколько стоит сайт?', keys: ['стоит', 'цен', 'стоимост', 'дорог', 'бюджет', 'прайс'], a: 'Одна страница 35 000 ₽, сайт компании 80 000 ₽, магазин 120 000 ₽. Это цены первых пяти заказов. Выше есть чек, он считает вашу сумму и дату сдачи.' },
+  { q: 'Зачем студия, если сайт соберёт нейросеть?', keys: ['нейросет', 'ии', 'зачем', 'сам', 'конструктор', 'генерат'], a: 'Соберёт за минуту, и этого иногда достаточно. Но она не выяснит, почему выбирают вас, и не заметит, что форма перестала присылать заявки. За это отвечаем мы двое.' },
+  { q: 'Набросок наверху настоящий?', keys: ['набросок', 'макет', 'настоящ', 'наверху', 'первом экране'], a: 'Это скрипт с заготовками под одиннадцать видов дела. Он ничего не отправляет наружу. Настоящий макет рисуем руками после разговора.' },
+  { q: 'Как платить?', keys: ['плат', 'оплат', 'предоплат', 'аванс', 'частями', 'рассроч'], a: 'За одну страницу 70% до старта и 30% при запуске. За сайт и магазин 50% до старта, 40% после сборки, 10% при запуске.' },
+  { q: 'Что будет, если опоздаете?', keys: ['опозд', 'срок', 'успе', 'задерж', 'долго', 'быстро', 'когда'], a: 'По нашей вине: минус 5% за каждый рабочий день, но не больше 25%. В чеке можно подвигать ползунок и посмотреть сумму.' },
+  { q: 'Сколько правок входит?', keys: ['правк', 'исправ', 'поменя', 'передел', 'измен'], a: 'Два круга правок в цене. Дальше по часам, и мы назовём сумму до того, как начать.' },
+  { q: 'На кого оформят домен?', keys: ['домен', 'хостинг', 'доступ', 'код', 'собствен', 'пароль'], a: 'На вас. Домен и хостинг вы оплачиваете сами, на свой аккаунт. Доступы у вас с первого дня.' },
+  { q: 'Что в проверке за 12 000 ₽?', keys: ['провер', 'аудит', 'ошибк', 'закон', 'штраф', 'согласи'], a: 'Формы и согласия, политика, куки, вход через иностранные сервисы, иностранные слова, домен, скорость, телефон и десять ошибок, из-за которых теряются заявки. Закажете сайт, вычтем эти деньги. Это технический отчёт, юридического заключения в нём нет.' },
+  { q: 'Есть поддержка после запуска?', keys: ['поддерж', 'после', 'обслуж', 'сопровожд', 'абонент'], a: '6 000 ₽ в месяц, от трёх месяцев: обновления, копии, проверка форм каждую неделю и два часа правок.' },
+  { q: 'Нас увидят Алиса и другие помощники?', keys: ['алис', 'помощник', 'поиск', 'найд', 'яндекс', 'продвиж', 'робот'], a: 'Готовим под это сразу: цены и часы пишем текстом, услуги размечаем, вопросы отвечаем на странице. Место в ответе помощника обещать нельзя, и мы не обещаем.' },
+  { q: 'Кого вы не берёте?', keys: ['не бер', 'откаж', 'кого', 'не подход'], a: 'Заказы дешевле 25 000 ₽, «начните без предоплаты, потом рассчитаемся» и проекты, где некому принять решение.' },
+  { q: 'Где ваши отзывы?', keys: ['отзыв', 'клиент', 'рекоменд', 'кейс', 'портфолио', 'опыт'], a: 'Пока нет. Придумывать не стали. Вместо них учебные проекты, в которые можно нажимать, и условия, которые пишем в договор.' },
+];
+
+
+const MIN_QUESTION_WORD = 4;
+
+function scoreEntry(entry, clean) {
+  const keyScore = entry.keys.filter((key) => clean.includes(normalize(key))).reduce((sum, key) => sum + key.length, 0);
+  const words = normalize(entry.q).replace(/[^а-я0-9 ]/g, '').split(' ').filter((word) => word.length >= MIN_QUESTION_WORD);
+  const wordScore = words.filter((word) => clean.includes(word.slice(0, MIN_QUESTION_WORD + 1))).length * 2;
+  return keyScore + wordScore;
+}
+
+function findAnswer(question) {
+  const clean = normalize(question);
+  if (clean.length < 2) return null;
+  const ranked = FAQ.map((entry) => ({ entry, score: scoreEntry(entry, clean) })).filter((item) => item.score > 0);
+  if (ranked.length === 0) return null;
+  return ranked.reduce((best, item) => (item.score > best.score ? item : best)).entry;
+}
+
+// Сценка про помощника: что он ответит в зависимости от того, что смог прочитать на сайте.
+const SIGNALS = [
+  { id: 'service', title: 'Услуги размечены', line: 'услуга: ремонт стиральных машин', yes: 'Мастерская «Барабан» чинит стиральные машины', no: 'Есть мастерская «Барабан», но что она чинит, не понял: там одна картинка' },
+  { id: 'hours', title: 'Часы работы текстом', line: 'часы: каждый день, 9:00–21:00', yes: 'сегодня открыта до 21:00', no: 'часов работы не нашёл' },
+  { id: 'price', title: 'Цены текстом', line: 'выезд: 900 ₽, ремонт: от 2 500 ₽', yes: 'выезд 900 ₽, ремонт от 2 500 ₽', no: 'цен не увидел' },
+  { id: 'form', title: 'Запись понятна машине', line: 'действие: записаться, поля: время, адрес', yes: 'Свободно в 18:30. Записать вас?', no: 'Записать не могу, придётся звонить самому' },
+];
+
+function assistantReply(activeIds) {
+  const has = (id) => activeIds.includes(id);
+  const [service, hours, price, form] = SIGNALS;
+  const facts = [service, hours, price].map((signal) => (has(signal.id) ? signal.yes : signal.no));
+  const count = SIGNALS.filter((signal) => has(signal.id)).length;
+  const verdict = count === SIGNALS.length ? 'Заявка ваша' : count >= 2 ? 'Упомянул вскользь' : 'Посоветовал соседа';
+  const tail = has(form.id) ? form.yes : form.no;
+  const rival = count < 2 ? ' Зато у соседней мастерской всё указано, советую её.' : '';
+  return { text: `${facts.join(', ')}. ${tail}.${rival}`.replace('?.', '?'), verdict, count };
+}
+
+const MIN_CONTRAST = 4.5;
+const MIN_TARGET = 24;
+const GOOD_PAINT_MS = 1800;
+
+function parseColor(value) {
+  const parts = String(value).match(/[\d.]+/g);
+  if (!parts || parts.length < 3) return null;
+  return parts.slice(0, 3).map(Number);
+}
+
+function channel(value) {
+  const share = value / 255;
+  return share <= 0.03928 ? share / 12.92 : ((share + 0.055) / 1.055) ** 2.4;
+}
+
+function luminance([r, g, b]) {
+  return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+}
+
+function contrast(first, second) {
+  const [light, dark] = [luminance(first), luminance(second)].sort((a, b) => b - a);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+function foreignWords(text) {
+  return [...new Set(String(text).match(/[A-Za-z]{2,}/g) || [])];
+}
+
+function foreignHosts(urls, ownHost) {
+  const hosts = urls.map((url) => {
+    try { return new URL(url).host; } catch { return ''; }
+  });
+  return [...new Set(hosts.filter((host) => host && host !== ownHost))];
+}
+
+
+function moscowHour(now = new Date()) {
+  return Number(new Intl.DateTimeFormat('en-GB', { hour: '2-digit', hour12: false, timeZone: 'Europe/Moscow' }).format(now)) % 24;
+}
+
+function replyPromise(hour) {
+  if (hour >= STUDIO.replyFromHour && hour < STUDIO.replyUntilHour) return 'Сейчас на связи. Ответим сегодня.';
+  if (hour >= STUDIO.replyUntilHour) return `Уже вечер. Ответим завтра после ${STUDIO.replyFromHour}:00.`;
+  return `Ещё рано. Ответим сегодня после ${STUDIO.replyFromHour}:00.`;
+}
+
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const calmMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Текст пользователя попадает на страницу только через textContent.
+function h(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  Object.entries(attrs).forEach(([key, value]) => {
+    if (value === false || value === null || value === undefined) return;
+    if (key === 'on') Object.entries(value).forEach(([event, handler]) => node.addEventListener(event, handler));
+    else if (key === 'style') node.style.cssText = value;
+    else node.setAttribute(key, value === true ? '' : value);
+  });
+  node.append(...children.flat().filter((child) => child !== null && child !== undefined));
+  return node;
+}
+
+const NBSP = ' ';
+const rub = (value) => `${new Intl.NumberFormat('ru-RU').format(value).replace(/\s/g, NBSP)}${NBSP}₽`;
+const dayMonth = (date) => new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long' }).format(date);
+
+function plural(count, one, few, many) {
+  const tens = count % 100;
+  const ones = count % 10;
+  if (tens > 10 && tens < 20) return many;
+  if (ones === 1) return one;
+  return ones >= 2 && ones <= 4 ? few : many;
+}
+
+async function copyText(text, button, done) {
+  // Надпись помним один раз, иначе быстрый второй клик её затрёт.
+  const before = button.dataset.label ?? button.textContent;
+  button.dataset.label = before;
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = done;
+  } catch {
+    button.textContent = 'Не вышло, выделите текст';
+  }
+  setTimeout(() => { button.textContent = before; }, 2200);
+}
+
+function restart(node, className) {
+  node.classList.remove(className);
+  void node.offsetWidth;
+  node.classList.add(className);
+}
+
+// Рисунки из простых фигур. Цвета: var(--ac), var(--fg), var(--bg).
+const svg = (body) => `<svg viewBox="0 0 200 200" aria-hidden="true">${body}</svg>`;
+const spin = (count, body) => Array.from({ length: count }, (_, i) => `<g transform="rotate(${(360 / count) * i} 100 100)">${body}</g>`).join('');
+
+const EMBLEMS = {
+  cup: svg('<circle cx="94" cy="100" r="90" fill="var(--bg)"/><rect x="140" y="84" width="56" height="32" rx="16" fill="var(--fg)"/><circle cx="94" cy="100" r="66" fill="var(--fg)"/><circle cx="94" cy="100" r="53" fill="var(--ac)"/><path d="M94 70c26 0 26 30 0 30s-26 30 0 30" fill="none" stroke="var(--bg)" stroke-width="11" stroke-linecap="round"/>'),
+  plan: svg('<rect x="14" y="14" width="172" height="172" fill="var(--bg)"/><rect x="14" y="14" width="92" height="104" fill="var(--ac)"/><path d="M14 14h172v172H14zM106 14v62M14 118h62M106 118h80M106 118v22M106 172v14" fill="none" stroke="var(--fg)" stroke-width="9"/><path d="M106 118a42 42 0 0 0 0-42" fill="none" stroke="var(--fg)" stroke-width="4"/>'),
+  plus: svg('<circle cx="100" cy="100" r="92" fill="var(--bg)"/><rect x="74" y="30" width="52" height="140" rx="26" fill="var(--ac)"/><rect x="30" y="74" width="140" height="52" rx="26" fill="var(--fg)"/><circle cx="100" cy="100" r="26" fill="var(--bg)"/>'),
+  columns: svg('<path d="M100 14 190 62H10z" fill="var(--ac)"/><rect x="10" y="70" width="180" height="12" fill="var(--fg)"/><g fill="var(--fg)"><rect x="22" y="90" width="24" height="78"/><rect x="66" y="90" width="24" height="78"/><rect x="110" y="90" width="24" height="78"/><rect x="154" y="90" width="24" height="78"/></g><rect x="6" y="174" width="188" height="14" fill="var(--ac)"/>'),
+  waves: svg(Array.from({ length: 6 }, (_, i) => `<path d="M4 ${34 + i * 27}q32-34 64 0t64 0 64 0" fill="none" stroke="var(${i % 2 ? '--fg' : '--ac'})" stroke-width="15"/>`).join('')),
+  shelf: svg('<rect x="8" y="8" width="88" height="88" fill="var(--bg)"/><circle cx="52" cy="52" r="30" fill="var(--ac)"/><rect x="104" y="8" width="88" height="88" fill="var(--ac)"/><rect x="132" y="28" width="32" height="50" rx="6" fill="var(--bg)"/><rect x="8" y="104" width="88" height="88" fill="var(--fg)"/><path d="M52 122 80 174H24z" fill="var(--bg)"/><rect x="104" y="104" width="88" height="88" fill="var(--bg)"/><path d="M118 148a30 30 0 0 0 60 0z" fill="var(--fg)"/>'),
+  wheel: svg(`<circle cx="100" cy="100" r="94" fill="var(--fg)"/><circle cx="100" cy="100" r="66" fill="var(--bg)"/>${spin(5, '<rect x="92" y="38" width="16" height="54" rx="8" fill="var(--fg)"/>')}<circle cx="100" cy="100" r="22" fill="var(--ac)"/>${spin(24, '<rect x="97" y="8" width="6" height="14" fill="var(--bg)"/>')}`),
+  steps: svg('<g fill="var(--fg)"><rect x="8" y="146" width="42" height="46"/><rect x="54" y="108" width="42" height="84"/><rect x="100" y="70" width="42" height="122"/></g><rect x="146" y="32" width="46" height="160" fill="var(--ac)"/><circle cx="75" cy="84" r="20" fill="var(--ac)"/>'),
+  rings: svg('<g fill="none" stroke-width="18" stroke-linecap="round"><circle cx="100" cy="100" r="84" stroke="var(--fg)" stroke-dasharray="400 528" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="56" stroke="var(--ac)" stroke-dasharray="240 352" transform="rotate(-40 100 100)"/><circle cx="100" cy="100" r="28" stroke="var(--fg)" stroke-dasharray="100 176" transform="rotate(30 100 100)"/></g>'),
+  petals: svg(`${spin(7, '<ellipse cx="100" cy="48" rx="27" ry="46" fill="var(--ac)"/>')}${spin(7, '<rect x="98" y="40" width="4" height="50" fill="var(--bg)"/>')}<circle cx="100" cy="100" r="25" fill="var(--fg)"/>`),
+  pair: svg('<circle cx="72" cy="100" r="66" fill="var(--ac)"/><circle cx="128" cy="100" r="66" fill="none" stroke="var(--fg)" stroke-width="11"/>'),
+};
+
+
+const PHONE_OR_NICK = /^(\+?[\d\s()-]{10,20}|@?[\p{L}\d._]{3,40}|[^\s@]+@[^\s@]+\.[^\s@]+)$/u;
+let attached = {};
+
+function drawAttached() {
+  const box = $('#order-attach');
+  const entries = Object.entries(attached);
+  box.hidden = entries.length === 0;
+  box.replaceChildren(...entries.map(([key, text]) => h('p', {}, h('span', {}, text),
+    h('button', { type: 'button', 'aria-label': `Убрать: ${text}`, on: { click: () => { const { [key]: _removed, ...rest } = attached; attached = rest; drawAttached(); } } }, 'Убрать'))));
+}
+
+function attachToOrder(key, text) {
+  attached = { ...attached, [key]: text };
+  drawAttached();
+}
+
+function addToTask(text) {
+  const task = $('#order-task');
+  task.value = task.value ? `${task.value}\n${text}` : text;
+  $('#contact').scrollIntoView();
+  task.focus({ preventScroll: true });
+}
+
+function showError(id, message) {
+  const field = $(`#${id}`);
+  const error = $(`#${id}-err`);
+  error.hidden = !message;
+  error.textContent = message;
+  if (message) { field.setAttribute('aria-invalid', 'true'); field.setAttribute('aria-describedby', `${id}-err`); }
+  else field.removeAttribute('aria-invalid');
+  return !message;
+}
+
+function validate() {
+  const checks = [
+    ['order-name', $('#order-name').value.trim() ? '' : 'Напишите имя, чтобы мы знали, кому отвечать.'],
+    ['order-way', PHONE_OR_NICK.test($('#order-way').value.trim()) ? '' : 'Нужен телефон, почта или имя в мессенджере.'],
+    ['order-ok', $('#order-ok').checked ? '' : 'Без согласия мы не можем принять заявку.'],
+  ];
+  const failed = checks.filter(([id, message]) => !showError(id, message));
+  if (failed.length) $(`#${failed[0][0]}`).focus();
+  return failed.length === 0;
+}
+
+function orderText() {
+  return [
+    `Имя: ${$('#order-name').value.trim()}`,
+    `Связь: ${$('#order-way').value.trim()}`,
+    `Задача: ${$('#order-task').value.trim() || 'обсудим на созвоне'}`,
+    ...Object.values(attached),
+  ].join('\n');
+}
+
+function showDone(title, text) {
+  const done = $('#order-done');
+  const copy = h('button', { class: 'btn btn-line btn-s', type: 'button' }, 'Скопировать заявку');
+  copy.addEventListener('click', () => copyText(text, copy, 'Скопировано'));
+  done.hidden = false;
+  done.replaceChildren(h('p', {}, title), h('pre', {}, text), copy);
+  done.scrollIntoView({ block: 'nearest' });
+}
+
+async function send(text) {
+  const response = await fetch(STUDIO.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text }) });
+  if (!response.ok) throw new Error(`Сервер ответил ${response.status}`);
+}
+
+function initContact() {
+  $('#order').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!validate()) return;
+    const text = orderText();
+    if (!STUDIO.formEndpoint) {
+      showDone('Заявка собрана, но не отправлена: приём заявок ещё не подключён.', text);
+      return;
+    }
+    try {
+      await send(text);
+      showDone('Заявка у нас.', text);
+    } catch {
+      showDone('Отправить не получилось. Проверьте связь и нажмите ещё раз или скопируйте заявку.', text);
+    }
+  });
+  const policy = $('#policy');
+  $('#policy-open').addEventListener('click', (event) => { event.preventDefault(); policy.showModal(); });
+  policy.addEventListener('click', (event) => { if (event.target === policy) policy.close(); });
+  drawAttached();
+}
+
+
+const SAMPLES = ['кофейня «Пар» у парка', 'ремонт квартир', 'стоматология для детей', 'свечи ручной работы', 'юрист по наследству', 'шиномонтаж'];
+const CHIP_COUNT = 5;
+const DEMO_PAUSE_MS = 4200;
+const DEMO_TYPE_MS = 42;
+const FALLBACK_DELAY_MS = 700;
+const NARROW_PX = 300;
+
+const hexToRgb = (hex) => {
+  const full = hex.length === 4 ? [...hex.slice(1)].map((c) => c + c).join('') : hex.slice(1);
+  return parseColor(`rgb(${full.match(/../g).map((part) => parseInt(part, 16)).join(',')})`);
+};
+const readableOn = (accent, first, second) => (contrast(hexToRgb(accent), hexToRgb(first)) >= contrast(hexToRgb(accent), hexToRgb(second)) ? first : second);
+
+function renderMock(mock) {
+  const [bg, fg, ac, soft] = mock.palette;
+  const art = h('div', { class: 'mk-art' });
+  art.innerHTML = EMBLEMS[mock.emblem];
+  const style = `--bg:${bg};--fg:${fg};--ac:${ac};--soft:${soft};--ac-fg:${readableOn(ac, bg, fg)};--bold:${mock.boldness}`;
+  return h('div', { class: 'mk', 'data-layout': mock.layout, style },
+    h('div', { class: 'mk-nav' }, h('b', {}, mock.name), mock.nav.map((item) => h('span', {}, item))),
+    h('div', { class: 'mk-hero' },
+      h('div', { class: 'mk-copy' },
+        h('p', { class: 'mk-k' }, mock.kicker), h('p', { class: 'mk-h' }, mock.head),
+        h('p', { class: 'mk-s' }, mock.sub), h('span', { class: 'mk-btn' }, mock.cta)),
+      art),
+    h('ul', { class: 'mk-items' }, mock.items.map(([title, price]) => h('li', {}, h('span', {}, title), h('b', {}, price)))));
+}
+
+function initHero() {
+  const input = $('#maker-text');
+  const mood = $('#maker-mood');
+  const view = $('#frame-view');
+  const chips = $('#maker-chips');
+  const other = NICHES.find((niche) => niche.id === 'other');
+  let state = { niche: detectNiche(input.value) || other, variant: 0 };
+  let touched = false;
+  let demoTyping = false;
+  let settled = input.value;
+  let fallbackTimer = 0;
+  let current = null;
+
+  const draw = (animate) => {
+    current = buildMock({ text: input.value, niche: state.niche, variant: state.variant, boldness: Number(mood.value) / 100 });
+    const node = renderMock(current);
+    if (animate) node.classList.add('mk-in');
+    view.replaceChildren(node);
+    $('#frame-url').textContent = current.domain;
+    [...chips.children].forEach((chip) => chip.setAttribute('aria-pressed', String(chip.textContent === input.value)));
+  };
+  const say = () => { $('#stage-say').textContent = `Набросок для «${current.name}»: ${current.head}. Кнопка: ${current.cta}.`; };
+
+  const retext = () => {
+    const found = detectNiche(input.value);
+    clearTimeout(fallbackTimer);
+    const changed = found && found.id !== state.niche.id;
+    if (changed) state = { niche: found, variant: 0 };
+    if (!found) {
+      fallbackTimer = setTimeout(() => {
+        if (state.niche.id === 'other') return;
+        state = { niche: other, variant: 0 };
+        draw(true);
+      }, FALLBACK_DELAY_MS);
+    }
+    draw(changed);
+  };
+  const setText = (text) => {
+    input.value = text;
+    state = { niche: detectNiche(text) || other, variant: 0 };
+    draw(true);
+  };
+  // Прервали посреди слова: возвращаем пример, который нарисован в рамке.
+  const stopDemo = () => {
+    if (demoTyping) input.value = settled;
+    demoTyping = false;
+    touched = true;
+  };
+
+  chips.append(...SAMPLES.slice(1, CHIP_COUNT + 1).map((sample) => h('button', { class: 'chip', type: 'button', 'aria-pressed': 'false', on: { click: () => { stopDemo(); setText(sample); say(); } } }, sample)));
+  input.addEventListener('input', () => { stopDemo(); retext(); });
+  input.addEventListener('change', say);
+  input.addEventListener('focus', () => { stopDemo(); input.select(); });
+  mood.addEventListener('input', () => { stopDemo(); draw(false); });
+  $('#maker').addEventListener('submit', (event) => { event.preventDefault(); say(); });
+  $('#maker-next').addEventListener('click', () => {
+    stopDemo();
+    state = { ...state, variant: state.variant + 1 };
+    draw(true);
+    say();
+  });
+  $('#maker-take').addEventListener('click', () => {
+    stopDemo();
+    attachToOrder('sketch', `Набросок «${current.name}»: ${input.value || 'без описания'}, вариант ${(state.variant % 3) + 1}, смелость ${mood.value} из 100`);
+    $('#contact').scrollIntoView();
+  });
+
+  draw(false);
+  initGrip(stopDemo);
+  runDemo(() => touched, async (text) => {
+    settled = input.value;
+    demoTyping = true;
+    for (let i = 1; i <= text.length; i += 1) {
+      if (touched) return;
+      input.value = text.slice(0, i);
+      await new Promise((resolve) => { setTimeout(resolve, DEMO_TYPE_MS); });
+    }
+    demoTyping = false;
+    setText(text);
+  });
+}
+
+// Пока человек ничего не трогал, первый экран сам показывает разные дела.
+function runDemo(isStopped, type) {
+  if (calmMotion()) return;
+  let index = 0;
+  const tick = async () => {
+    if (isStopped()) return;
+    const box = $('#stage').getBoundingClientRect();
+    if (!document.hidden && box.bottom > 0 && box.top < innerHeight) {
+      index = (index + 1) % SAMPLES.length;
+      await type(SAMPLES[index]);
+    }
+    setTimeout(tick, DEMO_PAUSE_MS);
+  };
+  setTimeout(tick, DEMO_PAUSE_MS);
+}
+
+function initGrip(onUse) {
+  const frame = $('#frame');
+  const grip = $('#grip');
+  let percent = 100;
+  const apply = (next) => {
+    percent = Math.min(100, Math.max(0, Math.round(next)));
+    grip.setAttribute('aria-valuenow', String(percent));
+    grip.setAttribute('aria-valuetext', percent > 60 ? 'большой экран' : 'телефон');
+    frame.style.setProperty('--fw', `calc(${NARROW_PX}px + (100% - ${NARROW_PX}px) * ${percent / 100})`);
+  };
+  grip.addEventListener('pointerdown', (event) => {
+    onUse();
+    event.preventDefault();
+    grip.focus({ focusVisible: false });
+    grip.setPointerCapture(event.pointerId);
+    frame.classList.add('drag');
+    const room = frame.parentElement.clientWidth - NARROW_PX;
+    const startX = event.clientX;
+    const startPercent = percent;
+    // Рамка стоит по центру, поэтому край идёт вдвое быстрее ширины.
+    const move = (e) => apply(startPercent + ((e.clientX - startX) * 2 * 100) / room);
+    const up = () => {
+      frame.classList.remove('drag');
+      grip.removeEventListener('pointermove', move);
+    };
+    grip.addEventListener('pointermove', move);
+    grip.addEventListener('pointerup', up, { once: true });
+    grip.addEventListener('pointercancel', up, { once: true });
+  });
+  grip.addEventListener('keydown', (event) => {
+    const step = { ArrowLeft: -8, ArrowRight: 8, Home: -100, End: 100 }[event.key];
+    if (!step) return;
+    event.preventDefault();
+    onUse();
+    apply(percent + step);
+  });
+}
+
+
+const FIT_OUT = [
+  { title: 'Освежить', rate: 9000, pace: 2.2 },
+  { title: 'Под ключ', rate: 18000, pace: 1.2 },
+  { title: 'С мебелью', rate: 31000, pace: 0.9 },
+];
+
+function segment(items, active, onPick) {
+  return h('div', { class: 'app-seg' }, items.map((item, index) => h('button', { type: 'button', 'aria-pressed': String(index === active), on: { click: () => onPick(index) } }, item)));
+}
+
+function initRepair(root) {
+  root.style.cssText = '--p-bg:#f4f3ee;--p-fg:#1b211d;--p-ac:#1f6b4a;--p-soft:#e3e4da';
+  const area = h('input', { id: 'app-repair-area', type: 'range', min: 25, max: 120, value: 54, 'aria-label': 'Площадь квартиры' });
+  const label = h('b', {});
+  const sum = h('b', {});
+  const term = h('span', {});
+  const seg = h('div', {});
+  let kind = 1;
+  const draw = () => {
+    const metres = Number(area.value);
+    const { rate, pace } = FIT_OUT[kind];
+    const days = Math.round(metres / pace);
+    label.textContent = `${metres} м²`;
+    sum.textContent = rub(metres * rate);
+    term.textContent = `${days} ${plural(days, 'день', 'дня', 'дней')}, цена в договоре не растёт`;
+    seg.replaceChildren(segment(FIT_OUT.map((item) => item.title), kind, (index) => { kind = index; draw(); }));
+  };
+  const go = h('button', { class: 'app-go', type: 'button', on: { click: () => { go.textContent = 'Замерщик приедет завтра'; } } }, 'Вызвать замерщика');
+  area.addEventListener('input', () => { go.textContent = 'Вызвать замерщика'; draw(); });
+  root.append(h('div', { class: 'app' },
+    h('div', { class: 'app-b' }, 'Прямой угол', h('small', {}, 'смета за день')),
+    h('p', { class: 'app-h' }, 'Сколько стоит ваша квартира'),
+    h('div', { class: 'app-l' }, h('span', {}, 'Площадь'), label), area, seg,
+    h('div', { class: 'app-sum' }, h('span', {}, 'Выйдет'), sum, term), go));
+  draw();
+}
+
+const DOCTORS = [['Терапевт', 'принимает каждый день'], ['Гигиенист', 'чистка и осмотр'], ['Ортодонт', 'пластинки и брекеты']];
+const SLOTS = ['9:30', '11:00', '12:30', '15:00', '17:30', '19:00'];
+
+function nextWorkdays(count) {
+  const days = [];
+  let date = new Date();
+  while (days.length < count) {
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+    if (isWorkday(date)) days.push(date);
+  }
+  return days;
+}
+
+function initClinic(root) {
+  root.style.cssText = '--p-bg:#fff;--p-fg:#0f3038;--p-ac:#0c7a76;--p-soft:#e6f3f2';
+  const days = nextWorkdays(3);
+  const dayName = (date) => new Intl.DateTimeFormat('ru-RU', { weekday: 'short', day: 'numeric' }).format(date);
+  const fresh = { doctor: 0, day: 0, slot: -1, booked: false };
+  const busy = (state, index) => (index * 2 + state.doctor + state.day) % 5 === 1;
+  const app = h('div', { class: 'app' });
+  root.append(app);
+  const draw = (state) => {
+    const set = (patch) => draw({ ...state, ...patch });
+    if (state.booked) {
+      app.replaceChildren(h('div', { class: 'app-okay' }, h('i', {}),
+        h('p', { class: 'app-h' }, 'Записали'),
+        h('p', {}, `${DOCTORS[state.doctor][0]}, ${dayName(days[state.day])}, ${SLOTS[state.slot]}`),
+        h('button', { class: 'app-go', type: 'button', style: 'padding-inline:24px', on: { click: () => draw(fresh) } }, 'Выбрать другое время')));
+      return;
+    }
+    app.replaceChildren(
+      h('div', { class: 'app-b' }, 'Белый день', h('small', {}, 'запись')),
+      h('div', { class: 'app-doc' }, DOCTORS.map(([title, note], index) => h('button', { type: 'button', 'aria-pressed': String(index === state.doctor), on: { click: () => set({ doctor: index, slot: -1 }) } },
+        h('i', { style: `opacity:${1 - index * 0.28}` }), h('span', {}, title, h('small', {}, note))))),
+      segment(days.map(dayName), state.day, (index) => set({ day: index, slot: -1 })),
+      h('div', { class: 'app-slots' }, SLOTS.map((slot, index) => h('button', { type: 'button', disabled: busy(state, index), 'aria-pressed': String(index === state.slot), on: { click: () => set({ slot: index }) } }, slot))),
+      h('button', { class: 'app-go', type: 'button', style: 'margin-top:auto', disabled: state.slot < 0, on: { click: () => set({ booked: true }) } }, state.slot < 0 ? 'Выберите время' : `Записаться на ${SLOTS[state.slot]}`));
+  };
+  draw(fresh);
+}
+
+const GOODS = [['Дождь', 890, '#7fa6c9'], ['Хвоя', 890, '#5f8f6b'], ['Костёр', 990, '#c65f3a'], ['Инжир', 950, '#8d5a8f']];
+const FEE_SHARE = 0.27;
+
+function initShop(root) {
+  root.style.cssText = '--p-bg:#fffaf0;--p-fg:#2c1c10;--p-ac:#2c1c10;--p-soft:#f5e8cf;--p-acfg:#fffaf0';
+  const app = h('div', { class: 'app' });
+  root.append(app);
+  const draw = (cart) => {
+    const change = (index, delta) => draw(cart.map((count, i) => (i === index ? Math.max(0, count + delta) : count)));
+    const total = GOODS.reduce((sum, [, price], index) => sum + price * cart[index], 0);
+    const count = cart.reduce((sum, item) => sum + item, 0);
+    app.replaceChildren(
+      h('div', { class: 'app-b' }, 'Своя полка', h('small', {}, 'свечи')),
+      h('ul', { class: 'app-goods' }, GOODS.map(([title, price, color], index) => h('li', {},
+        h('i', { style: `--c:${color}` }), h('span', {}, `${title}, ${price} ₽`),
+        h('div', { class: 'app-cnt' },
+          h('button', { type: 'button', 'aria-label': `Убрать «${title}»`, disabled: cart[index] === 0, on: { click: () => change(index, -1) } }, '−'),
+          h('b', {}, String(cart[index])),
+          h('button', { type: 'button', 'aria-label': `Добавить «${title}»`, on: { click: () => change(index, 1) } }, '+'))))),
+      h('div', { class: 'app-sum' },
+        h('span', {}, count ? `${count} ${plural(count, 'свеча', 'свечи', 'свечей')}` : 'Корзина пуста'),
+        h('b', {}, rub(total)),
+        h('span', {}, total ? `На площадке отдали бы около ${rub(Math.round(total * FEE_SHARE))}` : 'Добавьте хотя бы одну')));
+  };
+  draw([1, 0, 1, 0]);
+}
+
+function initWorks() {
+  initRepair($('#app-repair'));
+  initClinic($('#app-clinic'));
+  initShop($('#app-shop'));
+}
+
+
+const PRESETS = [
+  { title: 'Есть только идея', productId: 'page', extraIds: ['texts'] },
+  { title: 'Есть старый сайт', productId: 'audit', extraIds: [] },
+  { title: 'Продаю на площадке', productId: 'shop', extraIds: [] },
+  { title: 'Люди должны записываться', productId: 'company', extraIds: ['booking'] },
+];
+const STAGES = { 1: ['сразу'], 2: ['до старта', 'при запуске'], 3: ['до старта', 'после сборки', 'при запуске'] };
+
+const row = (left, right, className = '') => h('div', { class: `rc-l ${className}` }, left, h('span', {}, right));
+
+function receiptText(result) {
+  return [
+    'Чек студии «Двое»',
+    ...result.lines.map((line) => `${line.title}: ${rub(line.price)}`),
+    result.penalty ? `Скидка за опоздание ${result.percent}%: −${rub(result.penalty)}` : '',
+    result.credit ? `Вычет за проверку: −${rub(result.credit)}` : '',
+    `Итого: ${rub(result.total)}`,
+    `Срок: ${result.days} ${plural(result.days, 'рабочий день', 'рабочих дня', 'рабочих дней')}, до ${dayMonth(result.finish)}`,
+  ].filter(Boolean).join('\n');
+}
+
+function renderReceipt(result) {
+  const stages = STAGES[result.payments.length];
+  return [
+    h('p', { class: 'rc-t' }, 'Чек'),
+    h('p', { class: 'rc-d' }, `${dayMonth(new Date())}, предварительный`),
+    ...result.lines.map((line) => row(h('span', {}, line.title, line.hours ? h('small', {}, ` ${line.hours} ч`) : null), rub(line.price))),
+    result.penalty ? row(h('span', {}, `Опоздали, −${result.percent}%`), `−${rub(result.penalty)}`, 'rc-minus') : null,
+    result.credit ? row(h('span', {}, 'Проверка зачтена'), `−${rub(result.credit)}`, 'rc-minus') : null,
+    h('hr', { class: 'rc-hr' }),
+    h('div', { class: 'rc-sum' }, h('span', {}, 'Итого'), h('b', {}, rub(result.total))),
+    h('hr', { class: 'rc-hr' }),
+    ...result.payments.map((value, index) => row(h('span', {}, `Платёж ${stages[index]}`), rub(value))),
+    h('hr', { class: 'rc-hr' }),
+    row(h('span', {}, 'Рабочих дней'), String(result.days)),
+    row(h('span', {}, 'Начнём завтра, сдадим'), dayMonth(result.finish)),
+  ].filter(Boolean);
+}
+
+function initPrice() {
+  const picker = $('#picker');
+  const late = $('#price-late');
+  const receipt = $('#receipt');
+
+  $('#price-products').append(...PRODUCTS.map((item) => h('label', { class: 'pick' },
+    h('input', { type: 'radio', name: 'product', id: `product-${item.id}`, value: item.id, checked: item.id === 'page' }),
+    h('b', {}, item.title), h('span', {}, item.note), h('em', {}, `${rub(item.price)}, ${item.days} ${plural(item.days, 'день', 'дня', 'дней')}`))));
+  $('#price-extras').append(...EXTRAS.map((item) => h('label', { class: 'tick' },
+    h('input', { type: 'checkbox', name: 'extra', id: `extra-${item.id}`, value: item.id }), h('span', {}, item.title), h('em', {}, `+${rub(extraPrice(item.hours))}`))));
+
+  const read = () => estimate({
+    productId: picker.elements.product.value,
+    extraIds: [...picker.querySelectorAll('[name="extra"]:checked')].map((box) => box.value),
+    auditDone: $('#price-audit').checked,
+    lateDays: Number(late.value),
+  });
+  let presets = [];
+  const draw = () => {
+    const result = read();
+    receipt.replaceChildren(...renderReceipt(result));
+    receipt.classList.toggle('rc-in', !calmMotion());
+    $('#price-extras-box').disabled = result.product.id === 'audit';
+    const days = Number(late.value);
+    $('#price-late-out').textContent = days ? `${days} ${plural(days, 'день', 'дня', 'дней')}, минус ${result.percent}%` : 'Сдали вовремя';
+    presets.forEach(({ chip, preset }) => {
+      const same = preset.productId === result.product.id && preset.extraIds.length === result.lines.length - 1 && preset.extraIds.every((id) => $(`#extra-${id}`).checked);
+      chip.setAttribute('aria-pressed', String(same));
+    });
+  };
+  presets = PRESETS.map((preset) => ({
+    preset,
+    chip: h('button', { class: 'chip', type: 'button', 'aria-pressed': 'false', on: { click: () => {
+      $(`#product-${preset.productId}`).checked = true;
+      EXTRAS.forEach((item) => { $(`#extra-${item.id}`).checked = preset.extraIds.includes(item.id); });
+      draw();
+    } } }, preset.title),
+  }));
+  $('#price-presets').append(...presets.map(({ chip }) => chip));
+  picker.addEventListener('input', draw);
+  picker.addEventListener('submit', (event) => event.preventDefault());
+  $('#receipt-copy').addEventListener('click', (event) => copyText(receiptText(read()), event.currentTarget, 'Чек скопирован'));
+  $('#receipt-take').addEventListener('click', () => {
+    const result = read();
+    attachToOrder('receipt', `${result.lines.map((line) => line.title).join(', ')}: ${rub(result.total)}, до ${dayMonth(result.finish)}`);
+    $('#contact').scrollIntoView();
+  });
+  draw();
+}
+
+
+function initReaders() {
+  const box = $('#rd-signals');
+  const draw = () => {
+    const active = [...box.querySelectorAll('input:checked')].map((input) => input.value);
+    const reply = assistantReply(active);
+    $('#rd-answer').textContent = reply.text;
+    const verdict = $('#rd-verdict');
+    verdict.textContent = reply.verdict;
+    verdict.dataset.n = String(reply.count);
+  };
+  box.append(...SIGNALS.map((signal, index) => h('label', { class: 'sw' },
+    h('input', { type: 'checkbox', id: `signal-${signal.id}`, value: signal.id, checked: index === 0 }), h('span', {}, signal.title), h('code', {}, signal.line))));
+  box.addEventListener('input', draw);
+  draw();
+}
+
+// [кто, подпись, с какого дня, сколько дней]
+const PLAN = [
+  { who: 'Первый', bars: [['a', 'Смыслы и тексты', 2, 2], ['a', 'Макет', 4, 2], ['a', 'Правки', 7, 2]] },
+  { who: 'Второй', bars: [['b', 'Каркас и домен', 2, 3], ['b', 'Вёрстка', 5, 4]] },
+];
+const ANSWERS = [['Созвон, 30 мин', 1, 1], ['Тексты: да или нет', 3, 1], ['Макет: да или нет', 5, 1], ['Первый круг', 7, 1], ['Приёмка', 10, 1]];
+const DAYS = 10;
+
+function initGantt() {
+  const cell = (tag, className, text, style, who) => h('li', { class: className, style, 'data-who': who }, text);
+  const days = Array.from({ length: DAYS }, (_, i) => cell('li', 'g-day', String(i + 1), `grid-row:1;grid-column:${i + 2}`));
+  const lanes = PLAN.flatMap((lane, index) => [
+    cell('li', 'g-who', lane.who, `grid-row:${index + 2};grid-column:1`),
+    ...lane.bars.map(([who, title, from, length]) => cell('li', 'g-bar', title, `grid-row:${index + 2};grid-column:${from + 1}/span ${length}`, who)),
+  ]);
+  const together = [['Разбор дела', 1], ['Проверка', 9], ['Запуск', 10]].map(([title, day]) => cell('li', 'g-bar', title, `grid-row:2/span 2;grid-column:${day + 1}`, 'ab'));
+  const you = [cell('li', 'g-who', 'От вас', 'grid-row:4;grid-column:1'), ...ANSWERS.map(([title, from, length]) => cell('li', 'g-bar', title, `grid-row:4;grid-column:${from + 1}/span ${length}`, 'you'))];
+  const pay = h('li', { class: 'g-pay', style: 'grid-row:5' }, h('span', {}, '70% до первого дня'), h('span', {}, '30% в день запуска'));
+  $('#gantt').append(...days, ...lanes, ...together, ...you, pay);
+}
+
+function initReply() {
+  $('#reply-now').textContent = replyPromise(moscowHour());
+}
+
+
+const ERAS = [
+  { year: '1999', note: 'Узорный фон, рельефные кнопки, счётчик посетителей и вечная стройка.' },
+  { year: '2007', note: 'Глянец, отражения и слово «бета» рядом с названием.' },
+  { year: '2014', note: 'Всё плоское, заголовки прописными, у цифр длинная тень.' },
+  { year: '2021', note: 'Темнота, стекло и фиолетовые разливы на каждом втором сайте.' },
+  { year: '2027', note: 'Страница не только показывает. Она рисует, считает, отвечает и проверяет сама себя.' },
+];
+const NOW = ERAS.length - 1;
+
+function initEras(onChange) {
+  const range = $('#time-range');
+  const root = document.documentElement;
+  $('#time-scale').append(...ERAS.map((era) => h('span', {}, era.year)));
+  const paint = (index) => {
+    const { year, note } = ERAS[index];
+    if (index === NOW) delete root.dataset.era;
+    else root.dataset.era = year;
+    $('#time-year').textContent = year;
+    $('#time-note').textContent = note;
+    $('#era-bar').hidden = index === NOW;
+    $('#era-bar-t').textContent = `Сейчас ${year}`;
+    onChange();
+  };
+  const go = (index) => {
+    if (!document.startViewTransition || calmMotion()) { paint(index); return; }
+    // Переход мог прерваться новым движением ручки, это не ошибка.
+    document.startViewTransition(() => paint(index)).finished.catch(() => undefined);
+  };
+  range.addEventListener('input', () => {
+    const index = Number(range.value);
+    const anchor = range.getBoundingClientRect().top;
+    paint(index);
+    // Держим ручку под пальцем: высота страницы в другом году другая.
+    scrollBy({ top: range.getBoundingClientRect().top - anchor, behavior: 'instant' });
+  });
+  $('#era-back').addEventListener('click', () => { range.value = String(NOW); go(NOW); });
+  range.value = String(NOW);
+  $('#time-year').textContent = ERAS[NOW].year;
+  $('#time-note').textContent = ERAS[NOW].note;
+}
+
+
+const CHECK_WORDS = ['замечание', 'замечания', 'замечаний'];
+
+function tokenColor(name) {
+  const probe = h('i', { style: `color:var(${name});position:absolute` });
+  document.body.append(probe);
+  const color = parseColor(getComputedStyle(probe).color);
+  probe.remove();
+  return color;
+}
+
+function countCookies() {
+  try { return document.cookie ? document.cookie.split(';').length : 0; } catch { return 0; }
+}
+
+function firstPaint() {
+  const entry = performance.getEntriesByName('first-contentful-paint')[0];
+  return entry ? Math.round(entry.startTime) : 0;
+}
+
+const seconds = (ms) => (ms / 1000).toFixed(1).replace('.', ',');
+
+function checkCookies() {
+  const count = countCookies();
+  return { ok: count === 0, title: 'Куки', text: count ? `Нашлось: ${count}` : 'Ни одной. Поэтому нет и баннера с просьбой согласиться' };
+}
+function checkScripts() {
+  const hosts = foreignHosts($$('script[src]').map((node) => node.src), location.host);
+  return { ok: hosts.length === 0, title: 'Чужие счётчики и скрипты', text: hosts.length ? `Загружаются с ${hosts.join(', ')}` : 'Ни одного' };
+}
+function checkFonts() {
+  const hosts = foreignHosts($$('link[rel="stylesheet"]').map((node) => node.href), location.host);
+  return { ok: hosts.length === 0, title: 'Шрифты со своего сервера', text: hosts.length ? `Пока приходят с ${hosts.join(', ')}. Перед запуском перенесём к себе` : 'Все лежат рядом со страницей' };
+}
+function checkConsent() {
+  const box = $('#order-ok');
+  return { ok: !box.defaultChecked, title: 'Согласие в форме', text: box.defaultChecked ? 'Галочка стоит заранее, так нельзя' : 'Отдельная галочка, заранее не стоит' };
+}
+function checkPolicy() {
+  const draft = /Черновик/.test($('#policy').textContent);
+  return { ok: !draft, title: 'Политика обработки данных', text: draft ? 'Есть, но это черновик: перед запуском впишем имя и ИНН' : 'Есть и заполнена' };
+}
+function checkLabels() {
+  const bare = $$('main input, main textarea').filter((field) => field.labels?.length === 0 && !field.getAttribute('aria-label'));
+  return { ok: bare.length === 0, title: 'Подписи у полей', text: bare.length ? `Без подписи: ${bare.length}` : 'У каждого поля есть подпись, её прочитает и программа для незрячих' };
+}
+function checkTargets() {
+  const small = $$('main button, main a, main input:not([type="range"])').filter((node) => {
+    const box = node.getBoundingClientRect();
+    return box.width > 0 && Math.min(box.width, box.height) < MIN_TARGET && !node.closest('label');
+  });
+  return { ok: small.length === 0, title: 'Кнопки под палец', text: small.length ? `Слишком мелких: ${small.length}` : `Мельче ${MIN_TARGET} точек ничего нет` };
+}
+function checkContrast() {
+  const ground = tokenColor('--ground');
+  const worst = Math.min(contrast(tokenColor('--ink'), ground), contrast(tokenColor('--muted'), ground));
+  return { ok: worst >= MIN_CONTRAST, title: 'Контраст текста', text: `Худший ${worst.toFixed(1).replace('.', ',')} к 1, нужно не меньше 4,5` };
+}
+function checkWords() {
+  const words = foreignWords($('main').innerText);
+  return { ok: words.length === 0, title: 'Иностранные слова без перевода', text: words.length ? `Нашлись: ${words.slice(0, 5).join(', ')}` : 'Ни одного' };
+}
+function checkScroll() {
+  const extra = document.documentElement.scrollWidth - innerWidth;
+  return { ok: extra <= 1, title: 'Прокрутка вбок', text: extra > 1 ? `Вылезает на ${extra} точек` : 'Страница не шире экрана' };
+}
+function checkPaint() {
+  const paint = firstPaint();
+  if (!paint) return { ok: true, title: 'Первая картинка на экране', text: 'Браузер не дал измерить' };
+  return { ok: paint < GOOD_PAINT_MS, title: 'Первая картинка на экране', text: `Через ${seconds(paint)} секунды, хорошо до 1,8` };
+}
+
+const CHECKS = [checkCookies, checkScripts, checkFonts, checkConsent, checkPolicy, checkLabels, checkTargets, checkContrast, checkWords, checkScroll, checkPaint];
+
+function runAudit(animate) {
+  const list = $('#audit-list');
+  // Свой же список не должен попадать в проверку иностранных слов.
+  list.replaceChildren();
+  const results = CHECKS.map((check) => check());
+  const sorted = [...results].sort((first, second) => Number(first.ok) - Number(second.ok));
+  list.replaceChildren(...sorted.map((item, index) => h('li', { 'data-s': item.ok ? 'ok' : 'warn', style: `--n:${index}` },
+    h('i', { 'aria-hidden': 'true' }, item.ok ? '✓' : '!'), h('b', {}, item.title), h('span', {}, item.text))));
+  if (animate) restart(list, 'run');
+  const bad = results.filter((item) => !item.ok).length;
+  const era = document.documentElement.dataset.era;
+  const head = `${results.length - bad} из ${results.length} в порядке`;
+  const tail = bad ? `, ${bad} ${plural(bad, ...CHECK_WORDS)}` : ', замечаний нет';
+  $('#audit-score').textContent = `${head}${tail}${era ? `. Проверяли оформление ${era} года` : ''}`;
+  $('#fact-cookies').textContent = String(countCookies());
+  const paint = firstPaint();
+  $('#foot-speed').textContent = paint ? `Первая картинка появилась через ${seconds(paint)} с` : '';
+}
+
+function initAudit() {
+  $('#audit-run').addEventListener('click', () => runAudit(true));
+  runAudit(false);
+  addEventListener('load', () => setTimeout(() => runAudit(false), 300));
+}
+
+
+const CHIP_LIMIT = 8;
+const MAX_LINES = 6;
+
+function initFaq(onUnknown) {
+  const talk = $('#talk');
+  const input = $('#ask-text');
+  const chips = $('#ask-chips');
+  const add = (className, ...content) => {
+    talk.append(h('p', { class: className }, ...content));
+    while (talk.children.length > MAX_LINES) talk.firstElementChild.remove();
+  };
+  const refill = (asked) => {
+    chips.replaceChildren(...FAQ.filter((entry) => !asked.includes(entry.q)).slice(0, CHIP_LIMIT)
+      .map((entry) => h('button', { class: 'chip', type: 'button', on: { click: () => answer(entry.q, entry) } }, entry.q)));
+  };
+  let asked = [];
+  const answer = (question, entry) => {
+    add('tq', question);
+    if (entry) add('ta', entry.a);
+    else {
+      add('ta', 'Такого ещё не спрашивали. ', h('button', { class: 'link', type: 'button', on: { click: () => onUnknown(question) } }, 'Вписать в заявку'), ', ответим лично.');
+    }
+    if (entry) { asked = [...asked, entry.q]; refill(asked); }
+  };
+  $('#ask').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) { input.focus(); return; }
+    answer(question, findAnswer(question));
+    input.value = '';
+  });
+  const first = FAQ[1];
+  answer(first.q, first);
+}
+
+
+function structuredData() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: STUDIO.name,
+    description: 'Сайты под ключ. Делают двое.',
+    makesOffer: PRODUCTS.map((item) => ({ '@type': 'Offer', name: item.title, price: item.price, priceCurrency: 'RUB', deliveryLeadTime: { '@type': 'QuantitativeValue', value: item.days, unitText: 'рабочих дней' } })),
+  };
+}
+
+function machineText() {
+  return [
+    `# ${STUDIO.name}`, '', '> Студия из двух человек. Делает сайты под ключ.', '',
+    '## Услуги и цены',
+    ...PRODUCTS.map((item) => `- ${item.title}: ${rub(item.price)}, ${item.days} рабочих дней. ${item.note}.`),
+    `- ${CARE.title}: ${rub(CARE.price)} в месяц, от ${CARE.minMonths} месяцев.`, '',
+    '## Условия',
+    '- Опоздание по вине студии: минус 5% за рабочий день, не больше 25%.',
+    '- Домен и доступы оформлены на клиента.', '- Два круга правок входят в цену.', '',
+    '## Вопросы и ответы',
+    ...FAQ.flatMap((entry) => [`### ${entry.q}`, entry.a, '']),
+    '## Действие', '- Оставить заявку: форма #contact, поля: имя, способ связи, задача, согласие.', '',
+    '## Разметка', JSON.stringify(structuredData(), null, 2),
+  ].join('\n');
+}
+
+function initMachine() {
+  const human = $('#read-human');
+  const robot = $('#read-machine');
+  const show = (isMachine) => {
+    $('#main').hidden = isMachine;
+    $('#machine').hidden = !isMachine;
+    human.setAttribute('aria-pressed', String(!isMachine));
+    robot.setAttribute('aria-pressed', String(isMachine));
+    if (isMachine) $('#machine-out').textContent = machineText();
+    scrollTo({ top: 0, behavior: 'instant' });
+  };
+  human.addEventListener('click', () => show(false));
+  robot.addEventListener('click', () => show(true));
+  // Любая ссылка на раздел возвращает человеческий вид.
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('a[href^="#"]') && $('#main').hidden) show(false);
+  }, { capture: true });
+}
+
+
+const REACH = 6;
+const SLEEP_AFTER_MS = 20000;
+const BLINK_EVERY_MS = 4600;
+const BLINK_MS = 140;
+
+function initEyes() {
+  const eyes = $('.eyes');
+  let sleepTimer = 0;
+  const wake = () => {
+    eyes.classList.remove('sleep');
+    clearTimeout(sleepTimer);
+    sleepTimer = setTimeout(() => eyes.classList.add('sleep'), SLEEP_AFTER_MS);
+  };
+  const lookAt = (x, y) => {
+    const box = eyes.getBoundingClientRect();
+    const dx = x - (box.left + box.width / 2);
+    const dy = y - (box.top + box.height / 2);
+    const length = Math.hypot(dx, dy) || 1;
+    const reach = Math.min(REACH, length / 12);
+    eyes.style.setProperty('--px', `${((dx / length) * reach).toFixed(1)}px`);
+    eyes.style.setProperty('--py', `${((dy / length) * reach).toFixed(1)}px`);
+  };
+  if (!calmMotion()) {
+    addEventListener('pointermove', (event) => { wake(); lookAt(event.clientX, event.clientY); }, { passive: true });
+    document.addEventListener('focusin', (event) => {
+      const box = event.target.getBoundingClientRect();
+      wake();
+      lookAt(box.left + box.width / 2, box.top + box.height / 2);
+    });
+    setInterval(() => {
+      eyes.classList.add('blink');
+      setTimeout(() => eyes.classList.remove('blink'), BLINK_MS);
+    }, BLINK_EVERY_MS);
+  }
+  wake();
+
+  const title = document.title;
+  document.addEventListener('visibilitychange', () => { document.title = document.hidden ? 'Двое ждут' : title; });
+}
+
+
+initContact();
+initHero();
+initWorks();
+initPrice();
+initReaders();
+initGantt();
+initReply();
+initEras(() => runAudit(false));
+initFaq((question) => addToTask(`Вопрос: ${question}`));
+initMachine();
+initEyes();
+initAudit();
+
+})();
+</script>
+</body>
+</html>
